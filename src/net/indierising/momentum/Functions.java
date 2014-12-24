@@ -58,6 +58,11 @@ public class Functions {
 			// so many casts, sorry.
 			g.drawImage((Image)findProperty(object,"render").getData(),(int)getX(object),(int)getY(object));
 		}
+		
+		// little test function to see everything working
+		if(findProperty(object,"con-id") != null){
+			g.drawString("" + findProperty(object,"con-id").getData(),(int)getX(object),(int)getY(object));
+		}
 	}
 	
 	
