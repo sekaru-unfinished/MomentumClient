@@ -1,0 +1,3 @@
+<ip>localhost
+<tcp_port>9000
+<udp_port>9001
