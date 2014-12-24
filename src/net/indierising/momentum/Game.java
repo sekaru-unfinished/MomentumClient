@@ -1,8 +1,6 @@
 package net.indierising.momentum;
 import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -21,19 +19,7 @@ public class Game extends StateBasedGame{
 		this.addState(new Play(INGAME));
         this.enterState(INGAME);
 	}
-	
-	public void init(GameContainer gc,StateBasedGame sc) throws SlickException {
-		
-	}
 
-	public void render(GameContainer gc,StateBasedGame sc, Graphics g) throws SlickException {
-		
-	}
-
-	public void update(GameContainer gc,StateBasedGame sc, int delta) throws SlickException {
-		
-	}
-	
 	public static void main(String args[]) throws SlickException{
 		 app = new AppGameContainer(new Game());
 	     app.setShowFPS(false);
