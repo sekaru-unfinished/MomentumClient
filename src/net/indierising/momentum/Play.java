@@ -57,22 +57,19 @@ public class Play extends BasicGameState{
 		g.setColor(Color.white);
 		for(int i = 0; i < Handler.gameObjects.size(); i++){
 			GameObject gameObject = Handler.gameObjects.get(i);
-			
-			float x = 0,y = 0;int width = 0,height = 0;
-			for(int e = 0; e < gameObject.properties.size(); e++){
-				Property p = gameObject.properties.get(e);
-				if(p.getName().equals("x")){
-					x = (float) p.getData();
-				}else if(p.getName().equals("y")){
-					y = (float) p.getData();
-				}else if(p.getName().equals("width")){
-					width = (int) p.getData();
-				}else if(p.getName().equals("height")){
-					height = (int) p.getData();
+			// check for render method, load our image if we don't have it yet otherwise the gameobject doesn't have a render method
+			if(Functions.findProperty(gameObject, "render") != null){
+				try {
+					Functions.loadImage(gameObject);
+				} catch (SlickException e) {
+					e.printStackTrace();
 				}
+				Functions.render(g,gameObject);
 			}
-			g.drawRect(x, y, width, height);
 		}
+		
+		
+		
 	}
 	
 	public static void describe(ArrayList<Property> properties){
