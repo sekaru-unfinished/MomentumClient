@@ -1,8 +1,10 @@
 package net.indierising.momentum;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import net.indierising.momentum.network.Network;
 import net.indierising.momentum.network.Network.Key;
+import net.indierising.momentum.utils.TagReader;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -26,9 +28,20 @@ public class Play extends BasicGameState{
 	}
 	
 	public void init(GameContainer gc,StateBasedGame sc) throws SlickException {
-		// eventually load these with the tagreader
+		TagReader config = null;
 		try {
-			network = new Network("localhost",9000,9001);
+			config = new TagReader(new FileInputStream("data/config.txt"));
+			config.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			// load the ports and ip from the config file
+			int tcp_port = Integer.parseInt(config.findData("tcp_port"));
+			int udp_port = Integer.parseInt(config.findData("udp_port"));
+			// start the client with parsed data
+			network = new Network(config.findData("ip"),tcp_port,udp_port);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
