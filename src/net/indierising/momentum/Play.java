@@ -1,11 +1,16 @@
 package net.indierising.momentum;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import net.indierising.momentum.entities.GameObject;
+import net.indierising.momentum.entities.Handler;
+import net.indierising.momentum.entities.Property;
 import net.indierising.momentum.network.Network;
 import net.indierising.momentum.network.Network.Key;
 import net.indierising.momentum.utils.TagReader;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -48,7 +53,33 @@ public class Play extends BasicGameState{
 	}
 
 	public void render(GameContainer gc,StateBasedGame sc, Graphics g) throws SlickException {
-		
+		// spaghetti test code can be removed whenever
+		g.setColor(Color.white);
+		for(int i = 0; i < Handler.gameObjects.size(); i++){
+			GameObject gameObject = Handler.gameObjects.get(i);
+			
+			float x = 0,y = 0;int width = 0,height = 0;
+			for(int e = 0; e < gameObject.properties.size(); e++){
+				Property p = gameObject.properties.get(e);
+				if(p.getName().equals("x")){
+					x = (float) p.getData();
+				}else if(p.getName().equals("y")){
+					y = (float) p.getData();
+				}else if(p.getName().equals("width")){
+					width = (int) p.getData();
+				}else if(p.getName().equals("height")){
+					height = (int) p.getData();
+				}
+			}
+			g.drawRect(x, y, width, height);
+		}
+	}
+	
+	public static void describe(ArrayList<Property> properties){
+		for(int i = 0; i < properties.size(); i++){
+			System.out.println(properties.get(i).getName() + "--");
+			System.out.println(properties.get(i).getData().getClass().getName());
+		}
 	}
 
 	public void update(GameContainer gc,StateBasedGame sc, int delta) throws SlickException {

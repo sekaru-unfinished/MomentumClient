@@ -1,6 +1,10 @@
 package net.indierising.momentum.network;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import net.indierising.momentum.entities.GameObject;
+import net.indierising.momentum.entities.Property;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
@@ -24,6 +28,7 @@ public class Network {
 		// register all our classes for the network - must be the same on client and server
 		register(client);
 		
+		client.addListener(new Reciever());
 		client.connect(TIMEOUT,IP,TCP_PORT,UDP_PORT);
 	}
 	
@@ -31,6 +36,10 @@ public class Network {
 		Kryo kryo = endPoint.getKryo();
 		
 		kryo.register(Key.class);
+		// we send the gameobjects so register them
+		kryo.register(GameObject.class);
+		kryo.register(ArrayList.class);
+		kryo.register(Property.class);
 	}
 	
 	// inputs
