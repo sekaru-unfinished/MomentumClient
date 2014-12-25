@@ -5,21 +5,21 @@ package net.indierising.momentum.entities;
  */
 public class Property {
 	private String name;
-	private Object data;// stores the variable relating to the property.
+	private Object data; // stores the variable relating to the property.
 	
-	public String getName(){
+	public String getName() {
 		return name;
 	}
 
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
 	
-	public Object getData(){
+	public Object getData() {
 		return data;
 	}
 	
-	public void setData(Object data){
+	public void setData(Object data) {
 		this.data = data;
 	}
 }

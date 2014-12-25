@@ -17,21 +17,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Play extends BasicGameState{
-	// stores the state of the game
-	int stateID = 0;
-	
+public class Play extends BasicGameState {
 	// holds our registered classes and the client
 	Network network;
 	
-	public Play(int stateID){
-		this.stateID = stateID;
-	}
+	public Play(int stateID) {}
 	 
-	public int getID() {
-		return stateID;
-	}
-	
 	public void init(GameContainer gc,StateBasedGame sc) throws SlickException {
 		TagReader config = null;
 		try {
@@ -45,6 +36,7 @@ public class Play extends BasicGameState{
 			// load the ports and ip from the config file
 			int tcp_port = Integer.parseInt(config.findData("tcp_port"));
 			int udp_port = Integer.parseInt(config.findData("udp_port"));
+			
 			// start the client with parsed data
 			network = new Network(config.findData("ip"),tcp_port,udp_port);
 		} catch (IOException e) {
@@ -67,23 +59,16 @@ public class Play extends BasicGameState{
 				Functions.render(g,gameObject);
 			}
 		}
-		
-		
-		
 	}
 	
-	public static void describe(ArrayList<Property> properties){
+	public static void describe(ArrayList<Property> properties) {
 		for(int i = 0; i < properties.size(); i++){
 			System.out.println(properties.get(i).getName() + "--");
 			System.out.println(properties.get(i).getData().getClass().getName());
 		}
 	}
-
-	public void update(GameContainer gc,StateBasedGame sc, int delta) throws SlickException {
-		
-	}
-
-	public void keyPressed(int key,char c){
+	
+	public void keyPressed(int key,char c) {
 		// TODO eventually load a list of all keys that can be pressed to avoid clogging the server
 		Key packet = new Key();
 		packet.keyCode = key;
@@ -91,10 +76,18 @@ public class Play extends BasicGameState{
 		Network.client.sendUDP(packet);
 	}
 	
-	public void keyReleased(int key,char c){
+	public void keyReleased(int key,char c) {
 		Key packet = new Key();
 		packet.keyCode = key;
 		packet.pressed = true;
 		Network.client.sendUDP(packet);
+	}
+
+	public void update(GameContainer gc,StateBasedGame sc, int delta) throws SlickException {
+		
+	}
+
+	public int getID() {
+		return Game.PLAY;
 	}
 }

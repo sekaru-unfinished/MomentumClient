@@ -5,22 +5,24 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class Game extends StateBasedGame{
-	static AppGameContainer app;
+public class Game extends StateBasedGame {
+	public static AppGameContainer app;
 	
 	// list of states
-	public static final int MAINMENUSTATE          	= 0;
-    public static final int INGAME          		= 1;
-    public final static int WIDTH 	= 1280;
-    public final static int HEIGHT 	= 720;
+	public static final int MENU = 0;
+    public static final int PLAY = 1;
+    
+    public final static int WIDTH = 1280;
+    public final static int HEIGHT = 720;
 	
-	public Game(){
+	public Game() {
 		super("Momentum Client");
-		this.addState(new Play(INGAME));
-        this.enterState(INGAME);
+		this.addState(new Play(MENU));
+		this.addState(new Play(PLAY));
+        this.enterState(PLAY);
 	}
 
-	public static void main(String args[]) throws SlickException{
+	public static void main(String args[]) throws SlickException {
 		 app = new AppGameContainer(new Game());
 	     app.setShowFPS(false);
 	     app.setDisplayMode(WIDTH, HEIGHT, false);
@@ -32,6 +34,7 @@ public class Game extends StateBasedGame{
 	}
 
 	public void initStatesList(GameContainer gc) throws SlickException {
-		this.getState(INGAME).init(gc, this);
+		this.getState(MENU).init(gc, this);
+		this.getState(PLAY).init(gc, this);
 	}
 }

@@ -7,19 +7,21 @@ import net.indierising.momentum.entities.Handler;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-public class Reciever extends Listener{
-	public void connected (Connection connection) {}
+public class Reciever extends Listener {
+	public void connected(Connection con) {}
 	
-	public void received (Connection connection,final Object object) {
-		if(object instanceof GameObject){
-			GameObject packet = (GameObject) object;
+	public void received(Connection con, Object obj) {
+		if(obj instanceof GameObject) {
+			GameObject packet = (GameObject) obj;
+			
 			// check if we have it already
-			if(!Handler.gameObjects.contains(packet)){
+			if(!Handler.gameObjects.contains(packet)) {
 				Handler.describe(packet.properties);
-				Handler.gameObjects.add(packet);// add our game object to our list, TODO add instance objects instead of singular datatypes.
+				// add our game object to our list, TODO add instance objects instead of singular datatypes.
+				Handler.gameObjects.add(packet); 
 			}			
 		}
 	}
 	
-	public void disconnected (Connection connection){}
+	public void disconnected(Connection con) {}
 }

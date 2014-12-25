@@ -12,11 +12,11 @@ import com.esotericsoftware.kryonet.EndPoint;
 
 public class Network {
 	public static String IP = "localhost";
-	public static int TCP_PORT = 9000, UDP_PORT = 9001,TIMEOUT = 3000;
+	public static int TCP_PORT = 9000, UDP_PORT = 9001, TIMEOUT = 3000;
 	
 	public static Client client;
 	
-	public Network(String IP, int TCP_PORT,int UDP_PORT) throws IOException{
+	public Network(String IP, int TCP_PORT,int UDP_PORT) throws IOException {
 		client = new Client();
 		client.start();
 		
@@ -29,22 +29,22 @@ public class Network {
 		register(client);
 		
 		client.addListener(new Reciever());
-		client.connect(TIMEOUT,IP,TCP_PORT,UDP_PORT);
+		client.connect(TIMEOUT, IP, TCP_PORT, UDP_PORT);
 	}
 	
-	public static void register (EndPoint endPoint) {
+	public static void register(EndPoint endPoint) {
 		Kryo kryo = endPoint.getKryo();
 		
+		// register the classes we'll be transferring
 		kryo.register(Key.class);
-		// we send the gameobjects so register them
 		kryo.register(GameObject.class);
 		kryo.register(ArrayList.class);
 		kryo.register(Property.class);
 	}
 	
 	// inputs
-	public static class Key{
+	public static class Key {
 		public int keyCode;
-		public boolean pressed;// whether the key was pressed or released.
+		public boolean pressed; // whether the key was pressed or released.
 	}
 }
