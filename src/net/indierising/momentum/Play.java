@@ -3,13 +3,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import net.indierising.momentum.entities.GameObject;
-import net.indierising.momentum.entities.Handler;
-import net.indierising.momentum.entities.Property;
 import net.indierising.momentum.network.Network;
 import net.indierising.momentum.network.Network.Key;
 import net.indierising.momentum.utils.TagReader;
 
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -45,40 +43,20 @@ public class Play extends BasicGameState {
 	}
 
 	public void render(GameContainer gc,StateBasedGame sc, Graphics g) throws SlickException {
-		// spaghetti test code can be removed whenever
-		g.setColor(Color.white);
-		for(int i = 0; i < Handler.gameObjects.size(); i++){
-			GameObject gameObject = Handler.gameObjects.get(i);
-			// check for render method, load our image if we don't have it yet otherwise the gameobject doesn't have a render method
-			if(Functions.findProperty(gameObject, "render") != null){
-				try {
-					Functions.loadImage(gameObject);
-				} catch (SlickException e) {
-					e.printStackTrace();
-				}
-				Functions.render(g,gameObject);
-			}
-		}
-	}
-	
-	public static void describe(ArrayList<Property> properties) {
-		for(int i = 0; i < properties.size(); i++){
-			System.out.println(properties.get(i).getName() + "--");
-			System.out.println(properties.get(i).getData().getClass().getName());
-		}
+		
 	}
 	
 	public void keyPressed(int key,char c) {
 		// TODO eventually load a list of all keys that can be pressed to avoid clogging the server
 		Key packet = new Key();
-		packet.keyCode = key;
+		packet.keyName = Keyboard.getKeyName(key);
 		packet.pressed = true;
 		Network.client.sendUDP(packet);
 	}
 	
 	public void keyReleased(int key,char c) {
 		Key packet = new Key();
-		packet.keyCode = key;
+		packet.keyName = Keyboard.getKeyName(key);
 		packet.pressed = true;
 		Network.client.sendUDP(packet);
 	}

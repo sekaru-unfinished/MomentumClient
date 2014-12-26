@@ -3,16 +3,13 @@ package net.indierising.momentum.network;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import net.indierising.momentum.entities.GameObject;
-import net.indierising.momentum.entities.Property;
-
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.EndPoint;
 
 public class Network {
 	public static String IP = "localhost";
-	public static int TCP_PORT = 9000, UDP_PORT = 9001, TIMEOUT = 3000;
+	public static int TCP_PORT = 9000, UDP_PORT = 9001, TIMEOUT = 5000;
 	
 	public static Client client;
 	
@@ -37,14 +34,12 @@ public class Network {
 		
 		// register the classes we'll be transferring
 		kryo.register(Key.class);
-		kryo.register(GameObject.class);
 		kryo.register(ArrayList.class);
-		kryo.register(Property.class);
 	}
-	
+
 	// inputs
 	public static class Key {
-		public int keyCode;
+		public String keyName;
 		public boolean pressed; // whether the key was pressed or released.
 	}
 }
