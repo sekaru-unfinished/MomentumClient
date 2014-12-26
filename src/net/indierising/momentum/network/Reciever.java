@@ -11,11 +11,10 @@ public class Reciever extends Listener {
 	public void connected(Connection con) {}
 	
 	public void received(Connection con, Object obj) {
+		System.out.println(obj.getClass().getName());
 		if(obj instanceof PlayerPacket){
 			System.out.println("Added player");
-			PlayerPacket packet = (PlayerPacket) obj;
-			Handler.players.add(new Player(packet.connectionID,packet.username,packet.x,packet.y,packet.direction));
-			System.out.println("recieved player" + packet.connectionID);
+			Handler.addPlayer((PlayerPacket) obj);
 		}
 	}
 
