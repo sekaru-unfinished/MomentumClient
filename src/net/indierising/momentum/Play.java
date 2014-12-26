@@ -3,8 +3,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import net.indierising.momentum.entities.Handler;
 import net.indierising.momentum.network.Network;
 import net.indierising.momentum.network.Network.Key;
+import net.indierising.momentum.network.Network.PlayerPacket;
 import net.indierising.momentum.utils.TagReader;
 
 import org.lwjgl.input.Keyboard;
@@ -16,6 +18,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState {
+	public static String username = "mali";
 	// holds our registered classes and the client
 	Network network;
 	
@@ -40,10 +43,14 @@ public class Play extends BasicGameState {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		PlayerPacket packet = new PlayerPacket();
+		packet.username = Play.username;
+		Network.client.sendTCP(packet);
 	}
 
 	public void render(GameContainer gc,StateBasedGame sc, Graphics g) throws SlickException {
-		
+		Handler.render(g);
 	}
 	
 	public void keyPressed(int key,char c) {

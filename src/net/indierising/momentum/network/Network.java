@@ -3,6 +3,7 @@ package net.indierising.momentum.network;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import net.indierising.momentum.Play;
 import net.indierising.momentum.entities.Entity;
 import net.indierising.momentum.entities.Player;
 
@@ -53,5 +54,6 @@ public class Network {
 		public int connectionID;
 		public float x,y;
 		public int direction;
+		public String username;
 	}
 }
