@@ -10,16 +10,14 @@ public class Player extends MovingEntity{
 	boolean up,down,left,right;
 	private int connectionID;
 	private String username;
-	private String imageLocation;
 	private Image image;
 	
 	// only entites that need the directions get it.
 	public Player(int connectionID,String username,float x,float y,float speed,int direction,String imageLocation){
 		// set our player up with the speed and a width and height of 32.
-		super(x,y,32,32,speed,direction);
+		super(connectionID,x,y,32,32,speed,direction,imageLocation);
 		this.setConnectionID(connectionID);
 		this.setUsername(username);
-		this.imageLocation = imageLocation;
 	}
 	
 	public void render(Graphics g){

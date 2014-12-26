@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import net.indierising.momentum.Play;
 import net.indierising.momentum.entities.Entity;
+import net.indierising.momentum.entities.MovingEntity;
 import net.indierising.momentum.entities.Player;
 
 import com.esotericsoftware.kryo.Kryo;
@@ -42,6 +43,7 @@ public class Network {
 		
 		kryo.register(Entity.class);
 		kryo.register(PlayerPacket.class);
+		kryo.register(EntityPacket.class);
 	}
 
 	// inputs
@@ -57,5 +59,12 @@ public class Network {
 		public String username;
 		public float speed;
 		public String imageLocation;
+	}
+	
+	public static class EntityPacket{
+		public float x,y,speed;
+		public int direction;
+		public String imageLocation;
+		public int id;
 	}
 }
