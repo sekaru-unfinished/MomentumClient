@@ -2,6 +2,7 @@ package net.indierising.momentum.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Vector2f;
 
 public class Player extends MovingEntity{
 	
@@ -10,9 +11,10 @@ public class Player extends MovingEntity{
 	private String username;
 	
 	// only entites that need the directions get it.
-	public Player(int connectionID,String username,float x,float y,float speed,int direction){
-		// set our player up with the speed and a width and height of 32.
-		super(x,y,32,32,speed,direction);
+	public Player(int connectionID, String username, Vector2f pos, float speed, int direction){
+		// set our player up with the speed and a width and height of 32
+		super(pos, 32, 32, speed, direction);
+		
 		this.setConnectionID(connectionID);
 		this.setUsername(username);
 	}
@@ -27,7 +29,7 @@ public class Player extends MovingEntity{
 	}
 	
 	// TODO collisions
-	public boolean clearLocation(float nx,float ny){
+	public boolean clearLocation(float nx, float ny){
 		return true;
 	}
 
