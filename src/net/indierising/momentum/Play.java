@@ -56,15 +56,15 @@ public class Play extends BasicGameState {
 	public void keyPressed(int key,char c) {
 		// TODO eventually load a list of all keys that can be pressed to avoid clogging the server
 		Key packet = new Key();
-		packet.keyName = Keyboard.getKeyName(key);
+		packet.key = key;
 		packet.pressed = true;
 		Network.client.sendUDP(packet);
 	}
 	
 	public void keyReleased(int key,char c) {
 		Key packet = new Key();
-		packet.keyName = Keyboard.getKeyName(key);
-		packet.pressed = true;
+		packet.key = key;
+		packet.pressed = false;
 		Network.client.sendUDP(packet);
 	}
 

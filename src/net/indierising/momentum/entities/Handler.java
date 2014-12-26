@@ -15,7 +15,22 @@ public class Handler {
 		}
 	}
 	
+	public static Player getPlayerByID(int connectionID){
+		for(int i = 0; i < players.size(); i++){
+			if(players.get(i).getConnectionID() == connectionID){
+				return players.get(i);
+			}
+		}
+		// if we can't find them sorry.
+		return null;
+	}
+	
 	public static void addPlayer(PlayerPacket packet){
-		players.add(new Player(packet.connectionID,packet.username,packet.x,packet.y,packet.direction));
+		if(getPlayerByID(packet.connectionID) == null){
+			players.add(new Player(packet.connectionID,packet.username,packet.x,packet.y,packet.speed,packet.direction));
+		}else{
+			getPlayerByID(packet.connectionID).setX(packet.x);
+			getPlayerByID(packet.connectionID).setY(packet.y);
+		}
 	}
 }

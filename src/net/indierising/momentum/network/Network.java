@@ -46,7 +46,7 @@ public class Network {
 
 	// inputs
 	public static class Key {
-		public String keyName;
+		public int key;
 		public boolean pressed; // whether the key was pressed or released.
 	}
 	
@@ -55,5 +55,6 @@ public class Network {
 		public float x,y;
 		public int direction;
 		public String username;
+		public float speed;
 	}
 }
