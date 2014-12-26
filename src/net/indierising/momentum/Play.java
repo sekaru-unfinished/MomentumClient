@@ -69,7 +69,7 @@ public class Play extends BasicGameState {
 	}
 
 	public void update(GameContainer gc,StateBasedGame sc, int delta) throws SlickException {
-		
+		Handler.update(delta);
 	}
 
 	public int getID() {

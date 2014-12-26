@@ -56,5 +56,6 @@ public class Network {
 		public int direction;
 		public String username;
 		public float speed;
+		public String imageLocation;
 	}
 }

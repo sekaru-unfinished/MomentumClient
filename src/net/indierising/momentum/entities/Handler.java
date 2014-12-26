@@ -15,6 +15,12 @@ public class Handler {
 		}
 	}
 	
+	public static void update(int delta){
+		for(int i = 0; i < players.size(); i++){
+			players.get(i).update(delta);
+		}
+	}
+	
 	public static Player getPlayerByID(int connectionID){
 		for(int i = 0; i < players.size(); i++){
 			if(players.get(i).getConnectionID() == connectionID){
@@ -27,7 +33,8 @@ public class Handler {
 	
 	public static void addPlayer(PlayerPacket packet){
 		if(getPlayerByID(packet.connectionID) == null){
-			players.add(new Player(packet.connectionID,packet.username,packet.x,packet.y,packet.speed,packet.direction));
+			System.out.println(packet.imageLocation);
+			players.add(new Player(packet.connectionID,packet.username,packet.x,packet.y,packet.speed,packet.direction,packet.imageLocation));
 		}else{
 			getPlayerByID(packet.connectionID).setX(packet.x);
 			getPlayerByID(packet.connectionID).setY(packet.y);
