@@ -1,31 +1,30 @@
 package net.indierising.momentum.entities;
 
+import org.newdawn.slick.geom.Vector2f;
+
 public class Entity {
-	private float x;
-	private float y;
-	int width,height;
+	private Vector2f pos;
+	float width, height;
 	
-	public Entity(float x,float y,int width,int height){
-		this.setX(x);
-		this.setY(y);
+	public Entity(Vector2f pos, float width, float height){
+		this.pos = pos;
 		this.width = width;
 		this.height = height;
 	}
 
 	public float getX() {
-		return x;
+		return pos.getX();
 	}
 
 	public void setX(float x) {
-		this.x = x;
+		pos.set(x, pos.getY());
 	}
 
 	public float getY() {
-		return y;
+		return pos.getY();
 	}
 
 	public void setY(float y) {
-		this.y = y;
+		pos.set(pos.getX(), y);
 	}
-	
 }
