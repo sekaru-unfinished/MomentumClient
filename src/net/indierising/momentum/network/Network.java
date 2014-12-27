@@ -36,12 +36,14 @@ public class Network {
 	public static void register(EndPoint endPoint) {
 		Kryo kryo = endPoint.getKryo();
 		
+
 		// register the classes we'll be transferring
 		kryo.register(Key.class);
 		kryo.register(ArrayList.class);
 		
 		kryo.register(Entity.class);
 		kryo.register(PlayerPacket.class);
+		kryo.register(EntityPacket.class);
 	}
 
 	// inputs
@@ -56,5 +58,12 @@ public class Network {
 		public int direction;
 		public String username;
 		public float speed;
+	}
+	
+	public static class EntityPacket{
+		public float x,y,speed;
+		public int direction;
+		public String imageLocation;
+		public int id;
 	}
 }

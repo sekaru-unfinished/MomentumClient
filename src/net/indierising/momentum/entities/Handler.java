@@ -9,8 +9,13 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class Handler {
 	public static ArrayList<Player> players = new ArrayList<Player>();
+	// the core sending for npcs.
+	public static ArrayList<MovingEntity> npcs = new ArrayList<MovingEntity>();
 	
 	public static void render(Graphics g){
+		for(int i = 0; i < players.size(); i++){
+			players.get(i).render(g);
+		}
 		for(int i = 0; i < players.size(); i++){
 			players.get(i).render(g);
 		}
