@@ -3,9 +3,9 @@ package net.indierising.momentum.network;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import net.indierising.momentum.Play;
-import net.indierising.momentum.entities.Entity;
-import net.indierising.momentum.entities.Player;
+import net.indierising.momentum.network.Packets.EntityPacket;
+import net.indierising.momentum.network.Packets.Key;
+import net.indierising.momentum.network.Packets.PlayerPacket;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
@@ -41,29 +41,9 @@ public class Network {
 		kryo.register(Key.class);
 		kryo.register(ArrayList.class);
 		
-		kryo.register(Entity.class);
 		kryo.register(PlayerPacket.class);
 		kryo.register(EntityPacket.class);
 	}
-
-	// inputs
-	public static class Key {
-		public int key;
-		public boolean pressed; // whether the key was pressed or released.
-	}
 	
-	public static class PlayerPacket{
-		public int connectionID;
-		public float x,y;
-		public int direction;
-		public String username;
-		public float speed;
-	}
 	
-	public static class EntityPacket{
-		public float x,y,speed;
-		public int direction;
-		public String imageLocation;
-		public int id;
-	}
 }

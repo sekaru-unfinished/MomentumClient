@@ -11,9 +11,9 @@ public class Player extends MovingEntity{
 	private String username;
 	
 	// only entites that need the directions get it.
-	public Player(int connectionID, String username, Vector2f pos, float speed, int direction){
+	public Player(int connectionID, String username, Vector2f pos, float speed, int direction,String imageLocation){
 		// set our player up with the speed and a width and height of 32.
-		super(pos, 32, 32, speed, direction);
+		super(connectionID,pos.getX(),pos.getY(), 32, 32, speed, direction,imageLocation);
 		this.setConnectionID(connectionID);
 		this.setUsername(username);
 	}

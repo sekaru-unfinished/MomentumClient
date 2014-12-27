@@ -1,16 +1,13 @@
 package net.indierising.momentum;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import net.indierising.momentum.entities.Handler;
 import net.indierising.momentum.network.Network;
-import net.indierising.momentum.network.Network.Key;
-import net.indierising.momentum.network.Network.PlayerPacket;
+import net.indierising.momentum.network.Packets.Key;
+import net.indierising.momentum.network.Packets.PlayerPacket;
 import net.indierising.momentum.utils.TagReader;
 
-import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;

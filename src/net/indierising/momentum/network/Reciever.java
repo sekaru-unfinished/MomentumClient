@@ -1,8 +1,7 @@
 package net.indierising.momentum.network;
 
 import net.indierising.momentum.entities.Handler;
-import net.indierising.momentum.entities.Player;
-import net.indierising.momentum.network.Network.PlayerPacket;
+import net.indierising.momentum.network.Packets.PlayerPacket;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
