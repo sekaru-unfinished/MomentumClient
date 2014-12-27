@@ -2,7 +2,7 @@ package net.indierising.momentum.entities;
 
 import java.util.ArrayList;
 
-import net.indierising.momentum.network.Network.PlayerPacket;
+import net.indierising.momentum.network.Packets.PlayerPacket;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
