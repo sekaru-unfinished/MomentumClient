@@ -1,5 +1,5 @@
 package net.indierising.momentum;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
 
 import net.indierising.momentum.entities.Handler;
@@ -24,7 +24,7 @@ public class Play extends BasicGameState {
 	public void init(GameContainer gc,StateBasedGame sc) throws SlickException {
 		TagReader config = null;
 		try {
-			config = new TagReader(new FileInputStream("data/config.txt"));
+			config = new TagReader(new File("data/config.txt"));
 			config.read();
 		} catch (IOException e) {
 			e.printStackTrace();
