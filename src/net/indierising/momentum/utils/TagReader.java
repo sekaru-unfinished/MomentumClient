@@ -41,10 +41,10 @@ public class TagReader {
 			// check for the tag
 			if(lines.get(i).startsWith("<" + tag + ">")) {
 				// replace the tag bit with nothing so you're left with just the data
-				lines.set(i, lines.get(i).replace("<" + tag + ">", ""));
+				String data = lines.get(i).replace("<" + tag + ">", "");
 				
 				// return the data
-				return lines.get(i);
+				return data;
 			}
 		}
 		
@@ -56,14 +56,46 @@ public class TagReader {
 			// check for the tag
 			if(lines.get(i).startsWith("<" + tag + ">")) {
 				// replace the tag bit with nothing so you're left with just the data
-				lines.set(i, lines.get(i).replace("<" + tag + ">", ""));
+				String data = lines.get(i).replace("<" + tag + ">", "");
 				
 				// return the data
-				return lines.get(i);
+				return data;
 			}
 		}
 		
 		return defaultData;
+	}
+	
+	public String[] findParameterData(String tag) {
+		for(int i=0; i<lines.size(); i++) {
+			// check for the tag
+			if(lines.get(i).startsWith("<" + tag + ">")) {
+				// replace the tag bit with nothing so you're left with just the data
+				String data = lines.get(i).replace("<" + tag + ">", "");
+				String[] parameters = data.split("\\|");
+				
+				// return the data
+				return parameters;
+			}
+		}
+		
+		return null;
+	}
+	
+	public String[] findParameterData(String tag, String[] defaults) {
+		for(int i=0; i<lines.size(); i++) {
+			// check for the tag
+			if(lines.get(i).startsWith("<" + tag + ">")) {
+				// replace the tag bit with nothing so you're left with just the data
+				String data = lines.get(i).replace("<" + tag + ">", "");
+				String[] parameters = data.split("\\|");
+				
+				// return the data
+				return parameters;
+			}
+		}
+		
+		return defaults;
 	}
 	
 	public String getTagName(int index) {
