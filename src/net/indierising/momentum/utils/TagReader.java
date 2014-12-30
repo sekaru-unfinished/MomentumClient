@@ -51,6 +51,21 @@ public class TagReader {
 		return null;
 	}
 	
+	public String findData(String tag, String defaultData) {
+		for(int i=0; i<lines.size(); i++) {
+			// check for the tag
+			if(lines.get(i).startsWith("<" + tag + ">")) {
+				// replace the tag bit with nothing so you're left with just the data
+				lines.set(i, lines.get(i).replace("<" + tag + ">", ""));
+				
+				// return the data
+				return lines.get(i);
+			}
+		}
+		
+		return defaultData;
+	}
+	
 	public String getTagName(int index) {
 		String line = lines.get(index);
 		// clean our tagName field up so that we can get data with it
