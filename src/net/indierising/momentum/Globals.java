@@ -11,6 +11,9 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 public class Globals {
+	public static int TILE_SIZE = 32;
+	
+	// downloading clientside data from an ftp
 	public static String DATA_PACKAGE_NAME = "ClientData.zip";
 	public static String DATA_URL = "http://www.indierising.net/momentum/" + DATA_PACKAGE_NAME;
 	public static String DATA_DIR = "data/" + DATA_PACKAGE_NAME;
@@ -26,6 +29,7 @@ public class Globals {
 	    unZip(DATA_DIR, System.getProperty("user.dir") + "/data/");
 	}
 	
+	// unzipping .zip files
 	public static void unZip(String fileName, String outputFolder) throws IOException{
 
 	    try {
