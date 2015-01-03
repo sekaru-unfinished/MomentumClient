@@ -4,16 +4,15 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
-public class Player extends MovingEntity{
-	
+public class Player extends Entity{
 	boolean up,down,left,right;
 	private int connectionID;
 	private String username;
 	
 	// only entites that need the directions get it.
-	public Player(int connectionID, String username, Vector2f pos, float speed, int direction,String imageLocation){
+	public Player(int connectionID, String username, Vector2f pos, float speed, int direction, String imageLoc){
 		// set our player up with the speed and a width and height of 32.
-		super(connectionID,pos.getX(),pos.getY(), 32, 32, speed, direction,imageLocation);
+		super(connectionID, pos, 32, 32, speed, direction, imageLoc);
 		this.setConnectionID(connectionID);
 		this.setUsername(username);
 	}
