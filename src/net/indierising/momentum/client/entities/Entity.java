@@ -1,4 +1,4 @@
-package net.indierising.momentum.entities;
+package net.indierising.momentum.client.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -9,15 +9,13 @@ public class Entity {
 	float width, height;
 	int dir;
 	int id;
-	private float speed;
 	private String imageLoc;
 	
-	public Entity(int id, Vector2f pos, float width, float height, float speed, int dir, String imageLoc){
+	public Entity(int id, Vector2f pos, float width, float height, int dir, String imageLoc){
 		this.pos = pos;
 		this.width = width;
 		this.height = height;
 		this.id = id;
-		this.setSpeed(speed);
 		this.dir = dir;
 		this.setImageLoc(imageLoc);
 	}
@@ -54,14 +52,6 @@ public class Entity {
 		this.dir = dir;
 	}
 	
-	public float getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(float speed) {
-		this.speed = speed;
-	}
-
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.drawRect(getX(), getY(), width, height);

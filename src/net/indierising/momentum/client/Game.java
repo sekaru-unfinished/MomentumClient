@@ -1,4 +1,4 @@
-package net.indierising.momentum;
+package net.indierising.momentum.client;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;

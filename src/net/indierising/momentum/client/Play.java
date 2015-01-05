@@ -1,12 +1,12 @@
-package net.indierising.momentum;
+package net.indierising.momentum.client;
 import java.io.File;
 import java.io.IOException;
 
-import net.indierising.momentum.entities.Handler;
-import net.indierising.momentum.network.Network;
-import net.indierising.momentum.network.Packets.Key;
-import net.indierising.momentum.network.Packets.PlayerPacket;
-import net.indierising.momentum.utils.TagReader;
+import net.indierising.momentum.client.entities.Handler;
+import net.indierising.momentum.client.network.Network;
+import net.indierising.momentum.client.network.Packets.Key;
+import net.indierising.momentum.client.network.Packets.PlayerPacket;
+import net.indierising.momentum.client.utils.TagReader;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -42,7 +42,7 @@ public class Play extends BasicGameState {
 		}
 		
 		PlayerPacket packet = new PlayerPacket();
-		packet.username = Play.username;
+		packet.data.username = Play.username;
 		Network.client.sendTCP(packet);
 	}
 

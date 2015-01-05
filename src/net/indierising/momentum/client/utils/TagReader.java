@@ -1,4 +1,4 @@
-package net.indierising.momentum.utils;
+package net.indierising.momentum.client.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

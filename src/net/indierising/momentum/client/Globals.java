@@ -1,4 +1,4 @@
-package net.indierising.momentum;
+package net.indierising.momentum.client;
 
 import java.io.File;
 import java.io.FileOutputStream;

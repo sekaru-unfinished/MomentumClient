@@ -1,4 +1,7 @@
-package net.indierising.momentum.entities;
+package net.indierising.momentum.client.entities;
+
+import net.indierising.momentum.client.Globals;
+import net.indierising.momentum.client.entitydata.PlayerData;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -9,10 +12,9 @@ public class Player extends Entity{
 	private int connectionID;
 	private String username;
 	
-	// only entites that need the directions get it.
-	public Player(int connectionID, String username, Vector2f pos, float speed, int direction, String imageLoc){
-		// set our player up with the speed and a width and height of 32.
-		super(connectionID, pos, 32, 32, speed, direction, imageLoc);
+	public Player(PlayerData data){
+		// set our player up with the speed and a width and height of TILE_SIZE
+		super(data.connectionID, new Vector2f(data.x, data.y), Globals.TILE_SIZE, Globals.TILE_SIZE, data.dir, data.imageLoc);
 		this.setConnectionID(connectionID);
 		this.setUsername(username);
 	}
@@ -27,7 +29,7 @@ public class Player extends Entity{
 	}
 	
 	// TODO collisions
-	public boolean clearLocation(float nx,float ny){
+	public boolean clearLocation(float nx, float ny) {
 		return true;
 	}
 

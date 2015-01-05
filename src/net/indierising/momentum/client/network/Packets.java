@@ -1,4 +1,6 @@
-package net.indierising.momentum.network;
+package net.indierising.momentum.client.network;
+
+import net.indierising.momentum.client.entitydata.PlayerData;
 
 public class Packets {
 	// inputs
@@ -8,12 +10,7 @@ public class Packets {
 	}
 	
 	public static class PlayerPacket {
-		public int connectionID;
-		public float x, y;
-		public int direction;
-		public String username;
-		public float speed;
-		public String imageLocation;
+		public PlayerData data;
 	}
 	
 	public static class EntityPacket{

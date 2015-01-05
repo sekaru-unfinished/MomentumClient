@@ -1,11 +1,11 @@
-package net.indierising.momentum.network;
+package net.indierising.momentum.client.network;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import net.indierising.momentum.network.Packets.EntityPacket;
-import net.indierising.momentum.network.Packets.Key;
-import net.indierising.momentum.network.Packets.PlayerPacket;
+import net.indierising.momentum.client.network.Packets.EntityPacket;
+import net.indierising.momentum.client.network.Packets.Key;
+import net.indierising.momentum.client.network.Packets.PlayerPacket;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
