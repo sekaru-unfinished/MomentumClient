@@ -13,6 +13,12 @@ public class Packets {
 		public PlayerData data;
 	}
 	
+	public static class PlayerMove {
+		public int connectionID;
+		public float x, y;
+		public int dir;
+	}
+	
 	public static class EntityPacket{
 		public float x,y,speed;
 		public int direction;

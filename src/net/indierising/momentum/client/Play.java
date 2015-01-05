@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 
 import net.indierising.momentum.client.entities.Handler;
+import net.indierising.momentum.client.entitydata.PlayerData;
 import net.indierising.momentum.client.network.Network;
 import net.indierising.momentum.client.network.Packets.Key;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
@@ -21,7 +22,7 @@ public class Play extends BasicGameState {
 	
 	public Play(int stateID) {}
 	 
-	public void init(GameContainer gc,StateBasedGame sc) throws SlickException {
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		TagReader config = null;
 		try {
 			config = new TagReader(new File("data/config.txt"));
@@ -42,6 +43,7 @@ public class Play extends BasicGameState {
 		}
 		
 		PlayerPacket packet = new PlayerPacket();
+		packet.data = new PlayerData();
 		packet.data.username = Play.username;
 		Network.client.sendTCP(packet);
 	}
@@ -58,14 +60,14 @@ public class Play extends BasicGameState {
 		Network.client.sendUDP(packet);
 	}
 	
-	public void keyReleased(int key,char c) {
+	public void keyReleased(int key, char c) {
 		Key packet = new Key();
 		packet.key = key;
 		packet.pressed = false;
 		Network.client.sendUDP(packet);
 	}
 
-	public void update(GameContainer gc,StateBasedGame sc, int delta) throws SlickException {
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		
 	}
 
