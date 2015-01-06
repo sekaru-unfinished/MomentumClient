@@ -32,14 +32,9 @@ public class Reciever extends Listener {
 			float y = ((PlayerMove) obj).y;
 			int dir = ((PlayerMove) obj).dir;
 			
-			for(int i=0; i<Handler.players.size(); i++) {
-				if(Handler.players.get(i).getConnectionID()==connectionID) {
-					Handler.players.get(i).setX(x);
-					Handler.players.get(i).setX(y);
-					Handler.players.get(i).setDir(dir);
-					break;
-				}
-			}
+			Handler.getPlayerByID(connectionID).setX(x);
+			Handler.getPlayerByID(connectionID).setY(y);
+			Handler.getPlayerByID(connectionID).setDir(dir);
 		}
 		
 		if(obj instanceof EntityPacket){
