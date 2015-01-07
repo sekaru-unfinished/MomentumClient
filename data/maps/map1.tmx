@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="64">
+ <properties>
+  <property name="attributeslayer" value="9"/>
+  <property name="doorslayer" value="8"/>
+  <property name="exitx" value="26"/>
+  <property name="exity" value="1"/>
+  <property name="fringelayer" value="6"/>
+  <property name="lightinglayer" value="10"/>
+  <property name="spawnx" value="14"/>
+  <property name="spawny" value="40"/>
+ </properties>
+ <tileset firstgid="1" name="Ground" tilewidth="64" tileheight="64">
+  <image source="tilesets/Ground.png" width="512" height="896"/>
+ </tileset>
+ <tileset firstgid="113" name="Objects" tilewidth="64" tileheight="64">
+  <image source="tilesets/Objects.png" width="512" height="2368"/>
+ </tileset>
+ <tileset firstgid="409" name="Walls" tilewidth="64" tileheight="64">
+  <image source="tilesets/Walls.png" width="384" height="1600"/>
+ </tileset>
+ <tileset firstgid="559" name="Special" tilewidth="64" tileheight="64">
+  <image source="tilesets/Special.png" width="512" height="2048"/>
+ </tileset>
+ <tileset firstgid="815" name="Border" tilewidth="64" tileheight="64">
+  <image source="tilesets/Border.png" width="320" height="192"/>
+ </tileset>
+ <tileset firstgid="830" name="Attributes" tilewidth="64" tileheight="64">
+  <image source="tilesets/Attributes.png" width="256" height="384"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="oob" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="angle" value="90"/>
+    <property name="powerbox" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="guard" value="true"/>
+    <property name="package" value="gangster"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="angle" value="270"/>
+    <property name="package" value="gangster"/>
+    <property name="stationaryguard" value="true"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="angle" value="0"/>
+    <property name="package" value="gangster"/>
+    <property name="stationaryguard" value="true"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="angle" value="90"/>
+    <property name="package" value="gangster"/>
+    <property name="stationaryguard" value="true"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="angle" value="180"/>
+    <property name="package" value="gangster"/>
+    <property name="stationaryguard" value="true"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="blockedseeable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="door" value="true"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="lore" value="true"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="light" value="true"/>
+    <property name="lightingsize" value="0.65"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="0"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="1"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="blockedseeable" value="true"/>
+    <property name="height" value="8"/>
+    <property name="width" value="64"/>
+    <property name="xoffset" value="0"/>
+    <property name="yoffset" value="56"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="angle" value="90"/>
+    <property name="package" value="passive"/>
+    <property name="stationaryguard" value="true"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="windowh" value="true"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="windowv" value="true"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="blockedseeable" value="true"/>
+    <property name="height" value="64"/>
+    <property name="width" value="8"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="blocked" value="true"/>
+    <property name="height" value="70"/>
+    <property name="width" value="16"/>
+    <property name="xoffset" value="48"/>
+    <property name="yoffset" value="0"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="blocked" value="true"/>
+    <property name="height" value="32"/>
+    <property name="width" value="20"/>
+    <property name="xoffset" value="0"/>
+    <property name="yoffset" value="32"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="blocked" value="true"/>
+    <property name="height" value="64"/>
+    <property name="width" value="28"/>
+    <property name="xoffset" value="0"/>
+    <property name="yoffset" value="0"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="blockedseeable" value="true"/>
+    <property name="height" value="8"/>
+    <property name="width" value="28"/>
+    <property name="xoffset" value="36"/>
+    <property name="yoffset" value="56"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="854" name="NPCs" tilewidth="64" tileheight="64">
+  <image source="tilesets/NPCs.png" width="128" height="320"/>
+  <tile id="0">
+   <properties>
+    <property name="conv" value="tutorialnpc"/>
+    <property name="killable" value="false"/>
+    <property name="name" value="inmate"/>
+    <property name="npc" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="conv" value="jacob1"/>
+    <property name="name" value="jacob"/>
+    <property name="npc" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="killable" value="false"/>
+    <property name="name" value="inmate"/>
+    <property name="npc" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="864" name="Lights" tilewidth="64" tileheight="64">
+  <image source="tilesets/Lights.png" width="320" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="light" value="true"/>
+    <property name="lightimage" value="white_c"/>
+    <property name="lightsize" value="0.8"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="light" value="true"/>
+    <property name="lightimage" value="yellow_c"/>
+    <property name="lightsize" value="0.7"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="light" value="true"/>
+    <property name="lightimage" value="blue_c"/>
+    <property name="lightsize" value="1"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="light" value="true"/>
+    <property name="lightimage" value="pink_c"/>
+    <property name="lightsize" value="0.7"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="869" name="Animated Tiles" tilewidth="64" tileheight="64">
+  <image source="tilesets/AnimatedTiles.png" width="320" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="animatedtile" value="true"/>
+    <property name="frameheight" value="128"/>
+    <property name="framewidth" value="64"/>
+    <property name="tilename" value="acunit"/>
+    <property name="tilespeed" value="150"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="874" name="Destructibles" tilewidth="64" tileheight="64">
+  <image source="tilesets/Destructibles.png" width="320" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="destructible" value="true"/>
+    <property name="sound" value="cratesmash.wav"/>
+    <property name="tilename" value="crate1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="destructible" value="true"/>
+    <property name="sound" value="cratesmash.wav"/>
+    <property name="tilename" value="crate2"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="destructible" value="true"/>
+    <property name="durability" value="5"/>
+    <property name="sound" value="cratesmash.wav"/>
+    <property name="tileheight" value="128"/>
+    <property name="tilename" value="crate3"/>
+    <property name="tilewidth" value="128"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="879" name="Guns" tilewidth="64" tileheight="64">
+  <properties>
+   <property name="gun" value="true"/>
+  </properties>
+  <image source="tilesets/Guns.png" width="256" height="320"/>
+  <tile id="0">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="pistol"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="glock"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="luger"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="silenced pistol"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="skorpion"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="uzi"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="shotgun"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="doublebarrel"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="ar-15"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="m16"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="gun" value="true"/>
+    <property name="type" value="random"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Border" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmVsOwiAQRWt0P77qq+5/X/JjYhQYLmVgkHuS+WISOHRoKUxTWeYtln8F82tBD1uM6nF2+YfEOBZ03gt9ncC+LkB+yWcnzTcyLjTfsgcCPX5B17GE1bpCseox6jqnxzrosT7fuocvfO2xvVhrj1bQwxalv+etGMXjX+qKHnV5uHEukbh14iExynugF+bEvZKv/ZO7UL/foeGBEPLQOmeUzt9yzuF2LjaBNi2P1Hku9f9BjzhaHiHoEWe0ukKhRx5adRX6bj8786h9P0iPOPTII9UD3W9rrecQqR5W7/Xf0MMW9LCFdY8XAgAwJA==
+  </data>
+ </layer>
+ <layer name="Ground1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt100OgjAQBeBBUPEaLtzpPWRn1IV/iUYP5lEdI8RaWxmb1g51XvI2hcR+aaEI4D9TQ2eWcc4RB6+Ig1e+dYyI9Z35h/6rg2oI6agAjik4bE1hX6XiAHGIQxziMDhMCTV3NT4dvurTUSXiSGU9moqDjwMsvzPBb2O0XEPVxWH6Xm9zhK5LXNaDo6Mt4hDHL5Jh8w/Xx9gNdquUQzJih/X9C+wBuuHoWcbv1Q2rwPOj7lPqemT1/brh3CHHQHGsFccOHs9LVxxNC+xJsXBz9A1zxnfWVR/r1/NuLNwc3zwfY3i+e/fYZWAHOBhKouMCzzNkz8Bh2k8Uh36GxHYAYe45vDpixIdDX48Y8ekofjbr91AdQ0hjPUrDWZEZrsVK7P8AviIOXhEHr4gjbG5NDL8o
+  </data>
+ </layer>
+ <layer name="Ground2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2DsKgDAUBdFsSa3USve/KBVM6Q/y4gTmwK20meqJKZU37Zsf3hnP98jsYLGDxQ4WO1jsYLGDxQ4WO1i+dJRahDcdy7614CK86WiBHSx2sNjBkm9TX3GRHTVHUOs+S5L+cdzN4eJZl+Luaml3300t/DfI7GCxg8UOFjtY7GCxI94GQEM3Wg==
+  </data>
+ </layer>
+ <layer name="Objects1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlzsOgzAQRPeoXIGgHCBFfkU+VZKS5AYWSWqOlkWisFAsgcHetTVPGokGe9afZSACAAAdlNIGPNgSFSeieihpX6lRJbZmq4hz7Vh71iHA2K8A6+7ye2ZdWNelJwyEy++NdWc9ojvyQ4vfFPs70EUlbQCABcF51kHMPJcTT2kDHnQ5BPfOD2Q4WcrE/pOBPLXg3MPv6pr+994j2+y0GWlXog/ZtZSOZ48x2xmvR8PwvrAKaR9zyaWO98Q6tOadbj+aCXVozemuOhqrn6WQnVz345NJ7jCZ1AHiwuem/bJMr8b6bmvtSQAAAMbxA703PJE=
+  </data>
+ </layer>
+ <layer name="Objects2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmMFOwkAQhid9Vr3pAW1FtCKJcBJP4sGoyUAiBp9ir76CT+O/cihpjLJ07eyU+ZI/wKYp/9/d2e4ukWEYKTIgYmkPMbgIuPZSaea3je9LaC5lZEtWSp9znfeO5NgnXqUNBLK0MdYKPSinau7sKXvuC+gUOpE20hJPRO4RkvYRCm9xDd4rbqUw228cZESHmbSL5hwhw3EHcuTIUHQgR4kMV9l67tbOGDkmyvukgKbIcKc8RwnNkOEhcg5/X7+3DtmXNuUZGV4U98eg9rsUcdEc9ANjTDHqg1HrLO1nVzCWGHXBqHGeKM6RMljfEta3as+kUgHrAneGzz50XrVRvc2fC3wGrLnzlvvF/9kQuoZGG+0/tYVQNDG1A6mfTYayUPxe9cyzasx/CPqIBf9Tf4wwN6DO3FDpvtyvmfyaE/Od66/nRCds6ZsbaCxtIgK30FTaRAQsR1rcQ7M/rkFtcxfOPwzDMPaVLx8JSxY=
+  </data>
+ </layer>
+ <layer name="Objects3" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2EtLAmEYhuGX749WVpRmlB1Ic0I7kZ3oYJGVgsG4y13tEvxp3ZuBFrNIGJx54bnhYjbf4n22Y6aUUkoppYpeP9jwCTc4Q9qbOJiNwpwPm7EBtz/jFucpOyKz6ScbxgXf8bco+bJnD1Ws4IsN3452JB1x+z42sYofNkwc7lBKKaWUUkoppZRS/ovzPiCjPvI+IKNGeR/wzxaC2SKWUMKy0/+ba9y9jjIq2HC6Y4u7t1HDDnad7jjg7joaOETT6Y4Wd7dxjBOcOt1xwd0dXOIK10533HH3PR7wiK7THS/c3cMr3vBegB2/sfovNw==
+  </data>
+ </layer>
+ <layer name="Fringe" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1TENACAUQ8FKRRq+MAMrIwP5gdwpeEvTBADgPyPp1Q0nVm+rbgDusvM3vPYfAAAAAADAbgL/5QVt
+  </data>
+ </layer>
+ <layer name="Walls" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmdEKgjAUhvVNfa0izApCy6Cb7C6UCHqszs1giEf313RnbR8ciG04P9s5G5okdtml2PgtOH4poocsQvV40viHYdwsOm/oWseRqNOkRa7XAvd2t+gx9bxLcK4O8JbsgbCkRwWuK4QlPVA6ofmBIjXPK3AuqR5onkeP34gew/yLxztNMnIp9GioTfU3WvuLgjt7ufZwRSgec55LbGJ7P3dFKB7oucQVoeS5Lx57us/1SJw9qVdThFIHfOFEZ6BSC6pfheqj31nZi6vWr7OaWL/9sA36f+TM+LneM069f1NxsTT/XB6mzxmtu9y+6aFHO9TumwdH9BjH1IOrPxxS8wOlFJofKNw6dO2Rg+fEmtmfD57l+dLfB6PHONHjO0w9uLzlYq585jD1kPpdXxE9ZBE9ZCHd4wNa2aJS
+  </data>
+ </layer>
+ <layer name="Doors" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="Attributes" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmdFqwzAMRQv5r65jjV/L2B72DU3//7kEJlCFFUuOZNklF0RbYux7YktO6vN0Op2N40MR1mNbhkbRXg+O9+NIHXiVcHwWmBJpz+k6+TA//sde0Hf4rFlXOb5ceN3ve8aDlkPLbBmr/4XxOxIH6Dq9ftZ6i+awUO6+UCWUe6049uR5EvTdkkPSvmZ+W3EsG3UBi9bQKA7sC/YNqGHUV5p4vmgOqLk4L0v74N716sFBhfeSkh9ak0pjWHvX5Ie1JPNlyXEZjGO9718beWCpWZg/NRxbz1ce8uJ4NGSgPkvXLfID+vPQO3Akwdg1HPgdDcTt5xa6O3HsmS+t4LkG6gr3TNw7h7Tvg0PPpeFu4WvvfEA77v+rubFfi3V1C5gP2j83Zq4ub81Nrxwa5dpfHBmk/nLtpHND+zk4bDjou8kWR1R+1IjjmEm/nt49OWD/8DoXaJUfUedRJUG9lOZ0rxyrNBzQPpLjj/FKOUpnI5Ec8Psn4xG3y53x4Wu9cPwyHL0H6JtZa6NxYL+jc3CK9nhwjMfRczwBZE2SLw==
+  </data>
+ </layer>
+ <layer name="Lighting" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2NEKhCAQhWHBFy3f/yFCJJgL0zHRzkznA2+KjX5td6UQiIjWS1E30Hno0DawYx92rLuft5/7okNzzTOWob0e0npIvQ55Hrmj5ohlZLLjPm6xo3a812LRjnu3Ojda2t+nUU/P4yqr1ml3B/2Hl2fLSwfhGNk7I0PpsLrP6+2/5f4WmbYjgbd4eZcz24Hwnc5GOmotXjp2as2ZlYYWS2vR4qUjYwcWdmCx1IHynzvLSwcR2XEBELV5qg==
+  </data>
+ </layer>
+</map>

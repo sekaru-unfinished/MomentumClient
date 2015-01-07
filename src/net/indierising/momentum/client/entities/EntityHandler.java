@@ -8,7 +8,7 @@ import net.indierising.momentum.client.network.Packets.PlayerPacket;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
-public class Handler {
+public class EntityHandler {
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	// the core sending for npcs.
 	public static ArrayList<Entity> npcs = new ArrayList<Entity>();

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import net.indierising.momentum.client.entitydata.PlayerData;
+import net.indierising.momentum.client.network.Packets.ConstantsPacket;
 import net.indierising.momentum.client.network.Packets.EntityPacket;
 import net.indierising.momentum.client.network.Packets.Key;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
@@ -39,6 +40,7 @@ public class Network {
 		Kryo kryo = endPoint.getKryo();
 		
 		// register the classes we'll be transferring
+		kryo.register(ConstantsPacket.class);
 		kryo.register(Key.class);
 		kryo.register(ArrayList.class);
 		

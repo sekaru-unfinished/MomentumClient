@@ -8,6 +8,7 @@ public class PlayerData {
 	public float x, y;
 	public int dir;
 	public String imageLoc;
+	public int map;
 	
 	public PlayerData() {}
 	

@@ -7,25 +7,25 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
-public class Player extends Entity{
+public class Player extends Entity {
 	boolean up, down, left, right;
 	private int connectionID;
 	private String username;
+	private int map;
 	
 	public Player(PlayerData data){
-		// set our player up with the speed and a width and height of TILE_SIZE
 		super(data.connectionID, new Vector2f(data.x, data.y), Globals.TILE_SIZE, Globals.TILE_SIZE, data.dir, data.imageLoc);
 		this.setConnectionID(data.connectionID);
 		this.setUsername(data.username);
+		this.setMap(data.map);
 	}
 	
 	public void render(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(getX(), getY(), width, height);
-		System.out.println("x: " + getX());
 	}
 	
-	public void update(int delta){
+	public void update(int delta) {
 		
 	}
 	
@@ -50,4 +50,11 @@ public class Player extends Entity{
 		this.username = username;
 	}
 
+	public int getMap() {
+		return map;
+	}
+	
+	public void setMap(int map) {
+		this.map = map;
+	}
 }
