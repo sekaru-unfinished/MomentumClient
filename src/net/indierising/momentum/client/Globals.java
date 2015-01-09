@@ -30,6 +30,8 @@ public class Globals {
 	public static String DATA_URL = "http://www.indierising.net/momentum/" + DATA_PACKAGE_NAME;
 	public static String DATA_DIR = "data/" + DATA_PACKAGE_NAME;
 	
+	public static ArrayList<String> chat = new ArrayList<String>();
+	
 	public static void downloadData() throws IOException {
 		URL dataFile = new URL(DATA_URL);
 		ReadableByteChannel rbc = Channels.newChannel(dataFile.openStream());

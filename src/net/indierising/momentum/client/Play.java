@@ -6,10 +6,12 @@ import java.io.IOException;
 import net.indierising.momentum.client.entities.EntityHandler;
 import net.indierising.momentum.client.entitydata.PlayerData;
 import net.indierising.momentum.client.network.Network;
+import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.Key;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 import net.indierising.momentum.client.utils.TagReader;
 
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -56,6 +58,10 @@ public class Play extends BasicGameState {
 		
 		// render entities
 		EntityHandler.render(g);
+		
+		for(int i = 0; i < Globals.chat.size(); i++){
+			g.drawString(Globals.chat.get(i),32,10*i);
+		}
 	}
 	
 	public void keyPressed(int key,char c) {
@@ -64,6 +70,12 @@ public class Play extends BasicGameState {
 		packet.key = key;
 		packet.pressed = true;
 		Network.client.sendUDP(packet);
+		
+		if(key == Keyboard.KEY_SPACE){
+			ChatMessage messagePacket = new ChatMessage();
+			messagePacket.message = "Sending chat.";
+			Network.client.sendUDP(messagePacket);
+		}
 	}
 	
 	public void keyReleased(int key, char c) {

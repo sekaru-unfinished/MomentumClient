@@ -5,6 +5,7 @@ import java.io.IOException;
 import net.indierising.momentum.client.Globals;
 import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entities.EntityHandler;
+import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.ConstantsPacket;
 import net.indierising.momentum.client.network.Packets.EntityPacket;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
@@ -52,6 +53,12 @@ public class Reciever extends Listener {
 		
 		if(obj instanceof EntityPacket){
 			EntityHandler.addNPC((EntityPacket) obj);
+		}
+		
+		if(obj instanceof ChatMessage){
+			ChatMessage packet = (ChatMessage) obj;
+			// TODO add times to messages
+			Globals.chat.add(packet.name + " " + packet.message);
 		}
 	}
 

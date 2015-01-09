@@ -30,4 +30,8 @@ public class Packets {
 		public String imageLocation;
 		public int id;
 	}
+	
+	public static class ChatMessage {
+		public String name,message;
+	}
 }

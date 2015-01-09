@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import net.indierising.momentum.client.entitydata.PlayerData;
+import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.ConstantsPacket;
 import net.indierising.momentum.client.network.Packets.EntityPacket;
 import net.indierising.momentum.client.network.Packets.Key;
@@ -48,6 +49,7 @@ public class Network {
 		kryo.register(PlayerData.class);
 		kryo.register(PlayerMove.class);
 		kryo.register(EntityPacket.class);
+		kryo.register(ChatMessage.class);
 	}
 	
 	
