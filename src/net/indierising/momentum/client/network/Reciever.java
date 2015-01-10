@@ -58,6 +58,9 @@ public class Reciever extends Listener {
 		if(obj instanceof ChatMessage){
 			ChatMessage packet = (ChatMessage) obj;
 			// TODO add times to messages
+			if(Globals.chat.size() > 10){
+				Globals.chat.remove(0);
+			}
 			Globals.chat.add(packet.name + " " + packet.message);
 		}
 	}

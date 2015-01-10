@@ -7,6 +7,7 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -31,6 +32,7 @@ public class Globals {
 	public static String DATA_DIR = "data/" + DATA_PACKAGE_NAME;
 	
 	public static ArrayList<String> chat = new ArrayList<String>();
+	public static Random random = new Random();
 	
 	public static void downloadData() throws IOException {
 		URL dataFile = new URL(DATA_URL);

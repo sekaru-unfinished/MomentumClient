@@ -12,6 +12,7 @@ import net.indierising.momentum.client.network.Packets.PlayerPacket;
 import net.indierising.momentum.client.utils.TagReader;
 
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -60,7 +61,9 @@ public class Play extends BasicGameState {
 		EntityHandler.render(g);
 		
 		for(int i = 0; i < Globals.chat.size(); i++){
-			g.drawString(Globals.chat.get(i),32,10*i);
+			g.setColor(new Color(1f,1f,1f,(float)i/8));
+			System.out.println((float)i/8);
+			g.drawString(Globals.chat.get(i),32,500+(15*i));
 		}
 	}
 	
@@ -73,7 +76,7 @@ public class Play extends BasicGameState {
 		
 		if(key == Keyboard.KEY_SPACE){
 			ChatMessage messagePacket = new ChatMessage();
-			messagePacket.message = "Sending chat.";
+			messagePacket.message = "Sending chat." + Globals.random.nextInt(50);
 			Network.client.sendUDP(messagePacket);
 		}
 	}
