@@ -10,6 +10,7 @@ import net.indierising.momentum.client.network.Packets.ConstantsPacket;
 import net.indierising.momentum.client.network.Packets.EntityPacket;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
+import net.indierising.momentum.client.utils.Chat;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -57,11 +58,7 @@ public class Reciever extends Listener {
 		
 		if(obj instanceof ChatMessage){
 			ChatMessage packet = (ChatMessage) obj;
-			// TODO add times to messages
-			if(Globals.chat.size() > 10){
-				Globals.chat.remove(0);
-			}
-			Globals.chat.add(packet.name + " " + packet.message);
+			Chat.add(packet);
 		}
 	}
 

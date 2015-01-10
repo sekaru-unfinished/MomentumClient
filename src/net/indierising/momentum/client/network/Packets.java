@@ -32,6 +32,6 @@ public class Packets {
 	}
 	
 	public static class ChatMessage {
-		public String name,message;
+		public String title,message;
 	}
 }

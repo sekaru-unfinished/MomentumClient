@@ -9,6 +9,7 @@ import net.indierising.momentum.client.network.Network;
 import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.Key;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
+import net.indierising.momentum.client.utils.Chat;
 import net.indierising.momentum.client.utils.TagReader;
 
 import org.lwjgl.input.Keyboard;
@@ -49,6 +50,9 @@ public class Play extends BasicGameState {
 		packet.data = new PlayerData();
 		packet.data.username = Globals.username;
 		Network.client.sendTCP(packet);
+		
+		// initialise our chat
+		Globals.chat = new Chat(10);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -60,11 +64,7 @@ public class Play extends BasicGameState {
 		// render entities
 		EntityHandler.render(g);
 		
-		for(int i = 0; i < Globals.chat.size(); i++){
-			g.setColor(new Color(1f,1f,1f,(float)i/8));
-			System.out.println((float)i/8);
-			g.drawString(Globals.chat.get(i),32,500+(15*i));
-		}
+		Globals.chat.render(g);
 	}
 	
 	public void keyPressed(int key,char c) {
@@ -76,7 +76,7 @@ public class Play extends BasicGameState {
 		
 		if(key == Keyboard.KEY_SPACE){
 			ChatMessage messagePacket = new ChatMessage();
-			messagePacket.message = "Sending chat." + Globals.random.nextInt(50);
+			messagePacket.message = "Sending chat.";
 			Network.client.sendUDP(messagePacket);
 		}
 	}
