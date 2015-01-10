@@ -2,6 +2,7 @@ package net.indierising.momentum.client;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import net.indierising.momentum.client.entities.EntityHandler;
 import net.indierising.momentum.client.entitydata.PlayerData;
@@ -11,18 +12,23 @@ import net.indierising.momentum.client.network.Packets.Key;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 import net.indierising.momentum.client.utils.Chat;
 import net.indierising.momentum.client.utils.TagReader;
+import net.indierising.momentum.client.utils.Textbox;
 
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState {
 	Network network;
 	public static boolean doInitMaps; // maps need to be inited as part of the gameloop
+	ArrayList<Textbox> textboxes = new ArrayList<Textbox>();
 	
 	public Play(int stateID) {}
 	 
@@ -53,6 +59,8 @@ public class Play extends BasicGameState {
 		
 		// initialise our chat
 		Globals.chat = new Chat(10);
+		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
+		textboxes.add(new Textbox(gc, font, new Vector2f(50, 100), 500, 140, Color.white, Color.black));
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -65,6 +73,9 @@ public class Play extends BasicGameState {
 		EntityHandler.render(g);
 		
 		Globals.chat.render(g);
+		for(int i=0; i<textboxes.size(); i++) {
+			textboxes.get(i).render(g);
+		}
 	}
 	
 	public void keyPressed(int key,char c) {
@@ -86,6 +97,27 @@ public class Play extends BasicGameState {
 		packet.key = key;
 		packet.pressed = false;
 		Network.client.sendUDP(packet);
+		
+		// textboxes
+		for(int i=0; i<textboxes.size(); i++) {
+			if(textboxes.get(i).isFocused()) {
+				// make sure it isnt backspace
+				if(key!=Input.KEY_BACK) {
+					textboxes.get(i).addChar(c);
+				} else {
+					textboxes.get(i).delChar();
+				}
+			}
+		}
+	}
+	
+	public void mouseReleased(int button, int x, int y) {
+		// check for textboxes
+		for(int i=0; i<textboxes.size(); i++) {
+			if(textboxes.get(i).textboxArea.isMouseOver()) {
+				textboxes.get(i).setFocus();
+			}
+		}
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
