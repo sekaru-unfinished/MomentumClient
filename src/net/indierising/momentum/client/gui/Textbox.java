@@ -1,4 +1,4 @@
-package net.indierising.momentum.client.utils;
+package net.indierising.momentum.client.gui;
 
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
@@ -57,5 +57,9 @@ public class Textbox {
 	
 	public boolean isFocused() {
 		return hasFocus;
+	}
+	
+	public void unFocus() {
+		this.hasFocus = false;
 	}
 }

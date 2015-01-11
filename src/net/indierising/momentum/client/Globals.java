@@ -7,7 +7,6 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
-import java.util.Random;
 
 import net.indierising.momentum.client.utils.Chat;
 import net.lingala.zip4j.core.ZipFile;
@@ -68,5 +67,10 @@ public class Globals {
 		}
 		
 		mapsInited = true;
+	}
+	
+	// check if any textboxes are selected
+	public static void anyTextboxesFocused() {
+		
 	}
 }

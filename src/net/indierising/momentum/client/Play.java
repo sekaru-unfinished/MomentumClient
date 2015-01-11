@@ -2,17 +2,17 @@ package net.indierising.momentum.client;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import net.indierising.momentum.client.entities.EntityHandler;
 import net.indierising.momentum.client.entitydata.PlayerData;
+import net.indierising.momentum.client.gui.GUI;
+import net.indierising.momentum.client.gui.Textbox;
 import net.indierising.momentum.client.network.Network;
 import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.Key;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 import net.indierising.momentum.client.utils.Chat;
 import net.indierising.momentum.client.utils.TagReader;
-import net.indierising.momentum.client.utils.Textbox;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.AngelCodeFont;
@@ -28,7 +28,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Play extends BasicGameState {
 	Network network;
 	public static boolean doInitMaps; // maps need to be inited as part of the gameloop
-	ArrayList<Textbox> textboxes = new ArrayList<Textbox>();
+	public GUI gui;
 	
 	public Play(int stateID) {}
 	 
@@ -59,8 +59,11 @@ public class Play extends BasicGameState {
 		
 		// initialise our chat
 		Globals.chat = new Chat(10);
+		
+		// gui
+		gui = new GUI();
 		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
-		textboxes.add(new Textbox(gc, font, new Vector2f(50, 100), 500, 140, Color.white, Color.black));
+		gui.textboxes.add(new Textbox(gc, font, new Vector2f(50, 100), 500, 140, Color.white, Color.black));
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -72,18 +75,24 @@ public class Play extends BasicGameState {
 		// render entities
 		EntityHandler.render(g);
 		
+		// gui
 		Globals.chat.render(g);
-		for(int i=0; i<textboxes.size(); i++) {
-			textboxes.get(i).render(g);
+		
+		if(gui!=null) {
+			for(int i=0; i<gui.textboxes.size(); i++) {
+				gui.textboxes.get(i).render(g);
+			}
 		}
 	}
 	
 	public void keyPressed(int key,char c) {
 		// TODO eventually load a list of all keys that can be pressed to avoid clogging the server
-		Key packet = new Key();
-		packet.key = key;
-		packet.pressed = true;
-		Network.client.sendUDP(packet);
+		if(!gui.anyTextboxesFocused()) {
+			Key packet = new Key();
+			packet.key = key;
+			packet.pressed = true;
+			Network.client.sendUDP(packet);
+		}
 		
 		if(key == Keyboard.KEY_SPACE){
 			ChatMessage messagePacket = new ChatMessage();
@@ -93,19 +102,26 @@ public class Play extends BasicGameState {
 	}
 	
 	public void keyReleased(int key, char c) {
-		Key packet = new Key();
-		packet.key = key;
-		packet.pressed = false;
-		Network.client.sendUDP(packet);
+		if(!gui.anyTextboxesFocused()) {
+			Key packet = new Key();
+			packet.key = key;
+			packet.pressed = true;
+			Network.client.sendUDP(packet);
+		}
 		
 		// textboxes
-		for(int i=0; i<textboxes.size(); i++) {
-			if(textboxes.get(i).isFocused()) {
-				// make sure it isnt backspace
-				if(key!=Input.KEY_BACK) {
-					textboxes.get(i).addChar(c);
-				} else {
-					textboxes.get(i).delChar();
+		for(int i=0; i<gui.textboxes.size(); i++) {
+			if(gui.textboxes.get(i).isFocused()) {
+				// check the key
+				switch(key) {
+				case Input.KEY_BACK:
+					gui.textboxes.get(i).delChar();
+					break;
+				case Input.KEY_RETURN:
+					gui.textboxes.get(i).unFocus();
+					break;
+				default:
+					gui.textboxes.get(i).addChar(c);
 				}
 			}
 		}
@@ -113,10 +129,15 @@ public class Play extends BasicGameState {
 	
 	public void mouseReleased(int button, int x, int y) {
 		// check for textboxes
-		for(int i=0; i<textboxes.size(); i++) {
-			if(textboxes.get(i).textboxArea.isMouseOver()) {
-				textboxes.get(i).setFocus();
+		for(int i=0; i<gui.textboxes.size(); i++) {
+			if(gui.textboxes.get(i).textboxArea.isMouseOver()) {
+				gui.textboxes.get(i).setFocus();
 			}
+		}
+		
+		// no textboxes selected? must've tried to deselect
+		if(!gui.anyTextboxesFocused()) {
+			gui.deselectTextboxes();
 		}
 	}
 

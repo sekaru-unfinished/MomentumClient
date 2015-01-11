@@ -13,7 +13,6 @@ public class Chat {
 
 	public Chat(int CHAT_SIZE){
 		this.CHAT_SIZE = CHAT_SIZE;
-		System.out.println(CHAT_SIZE);
 		// fill our chat data with nothing to avoid nulls
 		for(int i = 0; i < CHAT_SIZE; i++){
 			data.add("");
