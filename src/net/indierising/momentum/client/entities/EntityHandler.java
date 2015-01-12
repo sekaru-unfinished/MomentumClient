@@ -2,7 +2,7 @@ package net.indierising.momentum.client.entities;
 
 import java.util.ArrayList;
 
-import net.indierising.momentum.client.network.Packets.EntityPacket;
+import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 
 import org.newdawn.slick.Graphics;
@@ -51,7 +51,7 @@ public class EntityHandler {
 		return null;
 	}
 	
-	public static void addNPC(EntityPacket packet) {
+	public static void addNPC(NPCPacket packet) {
 		if(getNPCByID(packet.id) == null) {
 			npcs.add(new Entity(packet.id, new Vector2f(packet.x, packet.y), 32, 32, packet.direction, packet.imageLocation));
 		} else {

@@ -24,7 +24,7 @@ public class Packets {
 		public int dir;
 	}
 	
-	public static class EntityPacket {
+	public static class NPCPacket {
 		public float x,y,speed;
 		public int direction;
 		public String imageLocation;

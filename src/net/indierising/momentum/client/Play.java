@@ -92,20 +92,26 @@ public class Play extends BasicGameState {
 			packet.key = key;
 			packet.pressed = true;
 			Network.client.sendUDP(packet);
+		}else{
+			// if there are textboxes selected TODO add a check to see if its the chat box
+			if(key == Keyboard.KEY_RETURN){
+				ChatMessage messagePacket = new ChatMessage();
+				// assign the first textbox in the array, ROUGH JOB
+				messagePacket.message = gui.textboxes.get(0).text;
+				Network.client.sendUDP(messagePacket);
+				gui.textboxes.get(0).text = "";
+				gui.textboxes.get(0).unFocus();
+			}
 		}
 		
-		if(key == Keyboard.KEY_SPACE){
-			ChatMessage messagePacket = new ChatMessage();
-			messagePacket.message = "Sending chat.";
-			Network.client.sendUDP(messagePacket);
-		}
+	
 	}
 	
 	public void keyReleased(int key, char c) {
 		if(!gui.anyTextboxesFocused()) {
 			Key packet = new Key();
 			packet.key = key;
-			packet.pressed = true;
+			packet.pressed = false;
 			Network.client.sendUDP(packet);
 		}
 		

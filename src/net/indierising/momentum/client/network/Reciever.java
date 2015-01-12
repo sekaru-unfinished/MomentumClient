@@ -7,7 +7,7 @@ import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entities.EntityHandler;
 import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.ConstantsPacket;
-import net.indierising.momentum.client.network.Packets.EntityPacket;
+import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 import net.indierising.momentum.client.utils.Chat;
@@ -52,8 +52,8 @@ public class Reciever extends Listener {
 			EntityHandler.getPlayerByID(connectionID).setDir(dir);
 		}
 		
-		if(obj instanceof EntityPacket){
-			EntityHandler.addNPC((EntityPacket) obj);
+		if(obj instanceof NPCPacket){
+			EntityHandler.addNPC((NPCPacket) obj);
 		}
 		
 		if(obj instanceof ChatMessage){
