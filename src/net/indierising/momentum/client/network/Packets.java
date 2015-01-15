@@ -34,4 +34,11 @@ public class Packets {
 	public static class ChatMessage {
 		public String title,message;
 	}
+	
+	// information about player class
+	public static class Class{
+		public String name,description;
+		public int id,damage,health;
+		// TODO add abilities
+	}
 }
