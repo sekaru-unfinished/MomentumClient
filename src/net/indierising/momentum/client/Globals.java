@@ -31,6 +31,9 @@ public class Globals {
 	public static String DATA_URL = "http://www.indierising.net/momentum/" + DATA_PACKAGE_NAME;
 	public static String DATA_DIR = "data/" + DATA_PACKAGE_NAME;
 	
+	// used for checking which keys can be sent
+	public static ArrayList<Integer> allowedKeys = new ArrayList<Integer>();
+	
 	public static Chat chat;
 	
 	public static void downloadData() throws IOException {
@@ -42,6 +45,7 @@ public class Globals {
 		
 	    // unzip it
 	    unZip(DATA_DIR, System.getProperty("user.dir") + "/data/");
+	   
 	}
 	
 	// unzipping .zip files
