@@ -50,6 +50,9 @@ public class Reciever extends Listener {
 			EntityHandler.getPlayerByID(connectionID).setX(x);
 			EntityHandler.getPlayerByID(connectionID).setY(y);
 			EntityHandler.getPlayerByID(connectionID).setDir(dir);
+			
+			// center the camera on them
+			if(connectionID==Globals.connectionID) Play.camera.centerOn(x, y);
 		}
 		
 		if(obj instanceof NPCPacket){

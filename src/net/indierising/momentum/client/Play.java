@@ -29,6 +29,7 @@ public class Play extends BasicGameState {
 	Network network;
 	public static boolean doInitMaps; // maps need to be inited as part of the gameloop
 	public GUI gui;
+	public static Camera camera;
 	
 	public Play(int stateID) {}
 	 
@@ -63,25 +64,40 @@ public class Play extends BasicGameState {
 		// gui
 		gui = new GUI();
 		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
-		gui.textboxes.add(new Textbox(gc, font, new Vector2f(50, 100), 500, 140, Color.white, Color.black));
+		gui.textboxes.add(new Textbox(gc, font, new Vector2f(16, gc.getHeight()-38), 500, 140, Color.white, Color.black));
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		// draw the map
-		if(Globals.connectionID!=-1 && Globals.mapsInited) {
-			Globals.maps.get(EntityHandler.getPlayerByID(Globals.connectionID).getMap()).render(0, 0);
-		}
-		
-		// render entities
-		EntityHandler.render(g);
-		
-		// gui
-		Globals.chat.render(g);
-		
-		if(gui!=null) {
-			for(int i=0; i<gui.textboxes.size(); i++) {
-				gui.textboxes.get(i).render(g);
+		if(Globals.connectionID!=-1) {
+			if(Globals.mapsInited) {
+				// draw the map
+				camera.drawMap();
+				camera.translateGraphics();
+				
+				// render entities
+				EntityHandler.render(g);
+				
+				// draw the fringe layers
+				camera.untranslateGraphics();
+		        camera.drawFringe();
+		        camera.translateGraphics();
+				
+				// untranslate the map so we can render the gui normally
+				camera.untranslateGraphics();
 			}
+			
+			// gui
+			Globals.chat.render(g);
+			
+			if(gui!=null) {
+				for(int i=0; i<gui.textboxes.size(); i++) {
+					gui.textboxes.get(i).render(g);
+				}
+			} else {
+				g.drawString("Loading...", 50, 50);
+			}
+		} else {
+			g.drawString("Connecting...", 50, 50);
 		}
 	}
 	
@@ -92,7 +108,7 @@ public class Play extends BasicGameState {
 			packet.key = key;
 			packet.pressed = true;
 			Network.client.sendUDP(packet);
-		}else{
+		} else {
 			// if there are textboxes selected TODO add a check to see if its the chat box
 			if(key == Keyboard.KEY_RETURN){
 				ChatMessage messagePacket = new ChatMessage();
@@ -167,6 +183,9 @@ public class Play extends BasicGameState {
 			}
 			
 			doInitMaps = false;
+			
+			// init the camera
+			camera = new Camera(gc, Globals.maps.get(EntityHandler.getPlayerByID(Globals.connectionID).getMap()));
 		} 
 	}
 

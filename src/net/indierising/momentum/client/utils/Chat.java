@@ -22,7 +22,7 @@ public class Chat {
 	public void render(Graphics g){
 		for(int i = 0; i < data.size(); i++){
 			g.setColor(new Color(1f,1f,1f,(float)i/8));
-			g.drawString(data.get(i),50,500+(i*15));
+			g.drawString(data.get(i),18,500+(i*15));
 		}
 	}
 	
