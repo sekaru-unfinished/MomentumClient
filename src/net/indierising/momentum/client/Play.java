@@ -64,6 +64,13 @@ public class Play extends BasicGameState {
 		gui = new GUI();
 		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
 		gui.textboxes.add(new Textbox(gc, font, new Vector2f(50, 100), 500, 140, Color.white, Color.black));
+		
+		// add acceptable keys do this somewhere else eventually TODO
+		Globals.allowedKeys.add(Keyboard.KEY_W);
+		Globals.allowedKeys.add(Keyboard.KEY_A);
+		Globals.allowedKeys.add(Keyboard.KEY_S);
+		Globals.allowedKeys.add(Keyboard.KEY_D);
+		Globals.allowedKeys.add(Keyboard.KEY_SPACE);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -85,13 +92,24 @@ public class Play extends BasicGameState {
 		}
 	}
 	
+	private boolean checkKey(int key){
+		for(int i = 0; i < Globals.allowedKeys.size(); i++){
+			if(key == Globals.allowedKeys.get(i)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void keyPressed(int key,char c) {
-		// TODO eventually load a list of all keys that can be pressed to avoid clogging the server
 		if(!gui.anyTextboxesFocused()) {
-			Key packet = new Key();
-			packet.key = key;
-			packet.pressed = true;
-			Network.client.sendUDP(packet);
+			// check keys to avoid clogging the server.
+			if(checkKey(key)){
+				Key packet = new Key();
+				packet.key = key;
+				packet.pressed = true;
+				Network.client.sendUDP(packet);
+			}
 		}else{
 			// if there are textboxes selected TODO add a check to see if its the chat box
 			if(key == Keyboard.KEY_RETURN){
@@ -109,10 +127,12 @@ public class Play extends BasicGameState {
 	
 	public void keyReleased(int key, char c) {
 		if(!gui.anyTextboxesFocused()) {
-			Key packet = new Key();
-			packet.key = key;
-			packet.pressed = false;
-			Network.client.sendUDP(packet);
+			if(checkKey(key)){// checks keys that send release code
+				Key packet = new Key();
+				packet.key = key;
+				packet.pressed = false;
+				Network.client.sendUDP(packet);
+			}
 		}
 		
 		// textboxes
