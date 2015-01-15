@@ -8,13 +8,12 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 public class Chat {
-	public static int CHAT_SIZE;
+	public static int size;
 	public static ArrayList<String> data = new ArrayList<String>();
 
-	public Chat(int CHAT_SIZE){
-		this.CHAT_SIZE = CHAT_SIZE;
+	public void fill(){
 		// fill our chat data with nothing to avoid nulls
-		for(int i = 0; i < CHAT_SIZE; i++){
+		for(int i = 0; i < size; i++){
 			data.add("");
 		}
 	}
@@ -27,7 +26,7 @@ public class Chat {
 	}
 	
 	public static void add(ChatMessage packet){
-		if(data.size() > CHAT_SIZE){
+		if(data.size() > size){
 			data.remove(0);
 		}
 		data.add(packet.title + " " + packet.message);

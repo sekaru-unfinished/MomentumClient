@@ -58,7 +58,9 @@ public class Play extends BasicGameState {
 		Network.client.sendTCP(packet);
 		
 		// initialise our chat
-		Globals.chat = new Chat(10);
+		Globals.chat = new Chat();
+		Globals.chat.size = 10;
+		Globals.chat.fill();
 		
 		// gui
 		gui = new GUI();
