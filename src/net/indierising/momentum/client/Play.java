@@ -42,7 +42,7 @@ public class Play extends BasicGameState {
 		gui = new GUI(font);
 		gui.textboxes.add(new Textbox(gc, gui, new Vector2f(16, gc.getHeight()-38), 500, 140, Color.white, Color.black));
 		
-		// add acceptable keys do this somewhere else eventually TODO
+		// TODO add acceptable keys do this somewhere else eventually
 		Globals.allowedKeys.add(Keyboard.KEY_W);
 		Globals.allowedKeys.add(Keyboard.KEY_A);
 		Globals.allowedKeys.add(Keyboard.KEY_S);
