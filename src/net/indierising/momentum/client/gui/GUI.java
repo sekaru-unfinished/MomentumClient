@@ -2,11 +2,17 @@ package net.indierising.momentum.client.gui;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.AngelCodeFont;
+
 public class GUI {
+	AngelCodeFont font;
+	
 	// textboxes
 	public ArrayList<Textbox> textboxes = new ArrayList<Textbox>();
 	
-	public GUI() {}
+	public GUI(AngelCodeFont font) {
+		this.font = font;
+	}
 	
 	// textboxes selected
 	public boolean anyTextboxesFocused() {

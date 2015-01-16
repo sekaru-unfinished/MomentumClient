@@ -10,7 +10,6 @@ import net.indierising.momentum.client.network.Packets.ConstantsPacket;
 import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
-import net.indierising.momentum.client.utils.Chat;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -61,7 +60,7 @@ public class Reciever extends Listener {
 		
 		if(obj instanceof ChatMessage){
 			ChatMessage packet = (ChatMessage) obj;
-			Chat.add(packet);
+			Globals.chat.add(packet);
 		}
 	}
 

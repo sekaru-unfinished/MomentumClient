@@ -26,14 +26,31 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState {
-	Network network;
+	public static Network network;
 	public static boolean doInitMaps; // maps need to be inited as part of the gameloop
 	public GUI gui;
 	public static Camera camera;
 	
-	public Play(int stateID) {}
+	public Play() {}
 	 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		// initialise our chat
+		Globals.chat = new Chat(10);
+		
+		// gui
+		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
+		gui = new GUI(font);
+		gui.textboxes.add(new Textbox(gc, gui, new Vector2f(16, gc.getHeight()-38), 500, 140, Color.white, Color.black));
+		
+		// add acceptable keys do this somewhere else eventually TODO
+		Globals.allowedKeys.add(Keyboard.KEY_W);
+		Globals.allowedKeys.add(Keyboard.KEY_A);
+		Globals.allowedKeys.add(Keyboard.KEY_S);
+		Globals.allowedKeys.add(Keyboard.KEY_D);
+		Globals.allowedKeys.add(Keyboard.KEY_SPACE);
+	}
+	
+	public static void tryConnect() {
 		TagReader config = null;
 		try {
 			config = new TagReader(new File("data/config.txt"));
@@ -57,22 +74,6 @@ public class Play extends BasicGameState {
 		packet.data = new PlayerData();
 		packet.data.username = Globals.username;
 		Network.client.sendTCP(packet);
-		
-		// initialise our chat
-		Globals.chat = new Chat(10);
-		
-		// gui
-		gui = new GUI();
-		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
-		gui.textboxes.add(new Textbox(gc, font, new Vector2f(16, gc.getHeight()-38), 500, 140, Color.white, Color.black));
-		gui.textboxes.add(new Textbox(gc, font, new Vector2f(50, 100), 500, 140, Color.white, Color.black));
-		
-		// add acceptable keys do this somewhere else eventually TODO
-		Globals.allowedKeys.add(Keyboard.KEY_W);
-		Globals.allowedKeys.add(Keyboard.KEY_A);
-		Globals.allowedKeys.add(Keyboard.KEY_S);
-		Globals.allowedKeys.add(Keyboard.KEY_D);
-		Globals.allowedKeys.add(Keyboard.KEY_SPACE);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {

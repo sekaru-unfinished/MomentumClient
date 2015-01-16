@@ -17,9 +17,9 @@ public class Game extends StateBasedGame {
 	
 	public Game() {
 		super("Momentum Client");
-		this.addState(new Play(MENU));
-		this.addState(new Play(PLAY));
-        this.enterState(PLAY);
+		this.addState(new Menu());
+		this.addState(new Play());
+        this.enterState(MENU);
 	}
 
 	public static void main(String args[]) throws SlickException {
@@ -34,7 +34,7 @@ public class Game extends StateBasedGame {
 	}
 
 	public void initStatesList(GameContainer gc) throws SlickException {
-		//this.getState(MENU).init(gc, this);
-		// don't init the state we are going into or else you end up with two connections.
+		this.getState(MENU).init(gc, this);
+		this.getState(PLAY).init(gc, this);
 	}
 }
