@@ -67,6 +67,7 @@ public class Play extends BasicGameState {
 			// start the client with parsed data
 			network = new Network(config.findData("ip"), tcp_port, udp_port);
 		} catch (IOException e) {
+			enterMenu = true;
 			e.printStackTrace();
 		}
 		
@@ -188,7 +189,14 @@ public class Play extends BasicGameState {
 		}
 	}
 
+	public static boolean enterMenu;
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		// going back to the main menu
+		if(enterMenu) {
+			sbg.enterState(Game.MENU);
+			enterMenu = false;
+		}
+		
 		// find their id
 		if(Globals.connectionID==-1 && EntityHandler.players.size()>0) {
 			for(int i=0; i<EntityHandler.players.size(); i++) {

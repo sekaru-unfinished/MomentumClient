@@ -44,9 +44,9 @@ public class Label {
 		
 		// render it
 		if(isOver && hov) {
-			gui.font.drawString(x, y, text, new Color(100, 100, 100));
-		} else {
 			gui.font.drawString(x, y, text, new Color(50, 50, 50));
+		} else {
+			gui.font.drawString(x, y, text, new Color(250, 250, 250));
 		}
 	}
 	
