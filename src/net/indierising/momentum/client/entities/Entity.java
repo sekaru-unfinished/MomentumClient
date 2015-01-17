@@ -2,6 +2,8 @@ package net.indierising.momentum.client.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Entity {
@@ -11,6 +13,9 @@ public class Entity {
 	int id;
 	private String imageLoc;
 	
+	private Image image;
+
+	
 	public Entity(int id, Vector2f pos, float width, float height, int dir, String imageLoc){
 		this.pos = pos;
 		this.width = width;
@@ -18,6 +23,12 @@ public class Entity {
 		this.id = id;
 		this.dir = dir;
 		this.setImageLoc(imageLoc);
+	}
+	
+	public void loadImage() throws SlickException{
+		if(image == null){
+			image = new Image(imageLoc);
+		}
 	}
 	
 	public String getImageLoc() {
@@ -55,6 +66,9 @@ public class Entity {
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.drawRect(getX(), getY(), width, height);
+		if(image != null){
+			g.drawImage(image, getX(), getY());
+		}
 	}
 	
 	public void update(int delta) {

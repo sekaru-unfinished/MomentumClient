@@ -209,7 +209,7 @@ public class Play extends BasicGameState {
 		}
 		
 		// init the maps
-		if(doInitMaps) {
+		if(doInitMaps && EntityHandler.getPlayerByID(Globals.connectionID) != null) {
 			try {
 				Globals.initMaps();
 			} catch (SlickException e) {
@@ -219,6 +219,7 @@ public class Play extends BasicGameState {
 			doInitMaps = false;
 			
 			// init the camera
+			
 			camera = new Camera(gc, Globals.maps.get(EntityHandler.getPlayerByID(Globals.connectionID).getMap()));
 		} 
 	}

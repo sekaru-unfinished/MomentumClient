@@ -132,10 +132,10 @@ public class Camera {
     }
    
     public void translateGraphics() {
-    	gc.getGraphics().translate(-x, -y);
+    	gc.getGraphics().translate((int)-x, (int)-y);
     }
 
     public void untranslateGraphics() {
-    	gc.getGraphics().translate(x, y);
+    	gc.getGraphics().translate((int)x,(int) y);
     }
 }

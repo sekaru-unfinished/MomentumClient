@@ -29,6 +29,9 @@ public class Packets {
 		public int direction;
 		public String imageLocation;
 		public int id;
+		public int health,damage;
+		public String name;
+		public float width,height;
 	}
 	
 	public static class ChatMessage {

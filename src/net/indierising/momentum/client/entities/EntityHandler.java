@@ -6,6 +6,7 @@ import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 public class EntityHandler {
@@ -19,6 +20,12 @@ public class EntityHandler {
 		}
 		for(int i = 0; i < npcs.size(); i++){
 			npcs.get(i).render(g);
+		}
+		// try to do this, might need optimising, but very little gain from doing so.
+		try {
+			loadNPCImages();
+		} catch (SlickException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -54,10 +61,17 @@ public class EntityHandler {
 	
 	public static void addNPC(NPCPacket packet) {
 		if(getNPCByID(packet.id) == null) {
-			npcs.add(new Entity(packet.id, new Vector2f(packet.x, packet.y), 32, 32, packet.direction, packet.imageLocation));
+		
+			npcs.add(new NPC(packet.id, new Vector2f(packet.x, packet.y), 32, 32, packet.direction, packet.imageLocation,packet.health,packet.damage,packet.name));
 		} else {
 			getNPCByID(packet.id).setX(packet.x);
 			getNPCByID(packet.id).setY(packet.y);
+		}
+	}
+	
+	private static void loadNPCImages() throws SlickException{
+		for(int i = 0; i < npcs.size(); i++){
+			npcs.get(i).loadImage();
 		}
 	}
 }
