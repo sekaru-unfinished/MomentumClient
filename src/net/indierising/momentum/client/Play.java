@@ -10,7 +10,6 @@ import net.indierising.momentum.client.gui.Textbox;
 import net.indierising.momentum.client.network.Network;
 import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.Key;
-import net.indierising.momentum.client.network.Packets.PlayerClass;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 import net.indierising.momentum.client.utils.Chat;
 import net.indierising.momentum.client.utils.TagReader;
