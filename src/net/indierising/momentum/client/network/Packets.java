@@ -36,7 +36,7 @@ public class Packets {
 	}
 	
 	// information about player class
-	public static class Class{
+	public static class PlayerClass{
 		public String name,description;
 		public int id,damage,health;
 		// TODO add abilities

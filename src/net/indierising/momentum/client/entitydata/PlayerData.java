@@ -1,6 +1,7 @@
 package net.indierising.momentum.client.entitydata;
 
 import net.indierising.momentum.client.entities.Player;
+import net.indierising.momentum.client.network.Packets.PlayerClass;
 
 public class PlayerData {
 	public int connectionID;
@@ -9,7 +10,7 @@ public class PlayerData {
 	public int dir;
 	public String imageLoc;
 	public int map;
-	
+	public PlayerClass playerClass;
 	public PlayerData() {}
 	
 	public PlayerData(Player player) {
@@ -19,6 +20,7 @@ public class PlayerData {
 		this.y = player.getY();
 		this.dir = player.getDir();
 		this.imageLoc = player.getImageLoc();
+		this.playerClass = player.getPlayerClass();
 	}
 	
 	public String toString() {

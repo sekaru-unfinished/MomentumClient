@@ -35,6 +35,7 @@ public class EntityHandler {
 	public static void addPlayer(PlayerPacket packet) {
 		if(getPlayerByID(packet.data.connectionID) == null) {
 			players.add(new Player(packet.data));
+			
 		} else {
 			getPlayerByID(packet.data.connectionID).setX(packet.data.x);
 			getPlayerByID(packet.data.connectionID).setY(packet.data.y);
