@@ -3,6 +3,7 @@ package net.indierising.momentum.client.network;
 import net.indierising.momentum.client.Globals;
 import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entities.EntityHandler;
+import net.indierising.momentum.client.entities.Player;
 import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.ConstantsPacket;
 import net.indierising.momentum.client.network.Packets.NPCMove;
@@ -22,6 +23,8 @@ public class Reciever extends Listener {
 			Globals.TILE_SIZE = ((ConstantsPacket) obj).TILE_SIZE;
 			Globals.MAX_MAPS = ((ConstantsPacket) obj).MAX_MAPS;
 			Globals.MAX_MAP_NPCS = ((ConstantsPacket) obj).MAX_MAP_NPCS;
+			Player.WIDTH = ((ConstantsPacket) obj).PLAYER_WIDTH;
+			Player.HEIGHT = ((ConstantsPacket) obj).PLAYER_HEIGHT;
 			
 			// init the maps
 		    Play.doInitMaps = true;

@@ -8,6 +8,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Player extends Entity {
+	public static float WIDTH, HEIGHT;
+	
 	boolean up, down, left, right;
 	private int connectionID;
 	private String username;
@@ -15,7 +17,7 @@ public class Player extends Entity {
 	private PlayerClass playerClass;
 	
 	public Player(PlayerData data){
-		super(data.connectionID, new Vector2f(data.x, data.y), 32, 32, data.dir, data.imageLoc);
+		super(data.connectionID, new Vector2f(data.x, data.y), WIDTH, HEIGHT, data.dir, data.imageLoc);
 		this.setConnectionID(data.connectionID);
 		this.setUsername(data.username);
 		this.setMap(data.map);
@@ -25,6 +27,7 @@ public class Player extends Entity {
 	public void render(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(getX(), getY(), width, height);
+		
 		if(playerClass != null){
 			g.drawString(playerClass.name, 10, 10);
 		}
@@ -34,11 +37,6 @@ public class Player extends Entity {
 		
 	}
 	
-	// TODO collisions
-	public boolean clearLocation(float nx, float ny) {
-		return true;
-	}
-
 	public int getConnectionID() {
 		return connectionID;
 	}
