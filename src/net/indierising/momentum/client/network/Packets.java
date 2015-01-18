@@ -1,5 +1,6 @@
 package net.indierising.momentum.client.network;
 
+import net.indierising.momentum.client.entitydata.NPCData;
 import net.indierising.momentum.client.entitydata.PlayerData;
 
 public class Packets {
@@ -25,17 +26,17 @@ public class Packets {
 	}
 	
 	public static class NPCPacket {
-		public float x,y,speed;
-		public int direction;
-		public String imageLocation;
+		public NPCData data;
+	}
+	
+	public static class NPCMove {
 		public int id;
-		public int health,damage;
-		public String name;
-		public float width,height;
+		public float x, y;
+		public int dir;
 	}
 	
 	public static class ChatMessage {
-		public String title,message;
+		public String title, message;
 	}
 	
 	// information about player class

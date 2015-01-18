@@ -3,14 +3,16 @@ package net.indierising.momentum.client.network;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import net.indierising.momentum.client.entitydata.NPCData;
 import net.indierising.momentum.client.entitydata.PlayerData;
 import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.ConstantsPacket;
-import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.Key;
+import net.indierising.momentum.client.network.Packets.NPCMove;
+import net.indierising.momentum.client.network.Packets.NPCPacket;
+import net.indierising.momentum.client.network.Packets.PlayerClass;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
-import net.indierising.momentum.client.network.Packets.PlayerClass;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
@@ -49,10 +51,12 @@ public class Network {
 		kryo.register(PlayerPacket.class);
 		kryo.register(PlayerData.class);
 		kryo.register(PlayerMove.class);
-		kryo.register(NPCPacket.class);
-		kryo.register(ChatMessage.class);
 		kryo.register(PlayerClass.class);
+		
+		kryo.register(NPCData.class);
+		kryo.register(NPCPacket.class);
+		kryo.register(NPCMove.class);
+		
+		kryo.register(ChatMessage.class);
 	}
-	
-	
 }

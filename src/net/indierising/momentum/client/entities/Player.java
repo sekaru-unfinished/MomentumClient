@@ -1,6 +1,5 @@
 package net.indierising.momentum.client.entities;
 
-import net.indierising.momentum.client.Globals;
 import net.indierising.momentum.client.entitydata.PlayerData;
 import net.indierising.momentum.client.network.Packets.PlayerClass;
 
@@ -16,7 +15,7 @@ public class Player extends Entity {
 	private PlayerClass playerClass;
 	
 	public Player(PlayerData data){
-		super(data.connectionID, new Vector2f(data.x, data.y), Globals.TILE_SIZE, Globals.TILE_SIZE, data.dir, data.imageLoc);
+		super(data.connectionID, new Vector2f(data.x, data.y), 32, 32, data.dir, data.imageLoc);
 		this.setConnectionID(data.connectionID);
 		this.setUsername(data.username);
 		this.setMap(data.map);

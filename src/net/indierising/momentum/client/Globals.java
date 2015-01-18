@@ -1,17 +1,7 @@
 package net.indierising.momentum.client;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
-
 import net.indierising.momentum.client.utils.Chat;
-import net.lingala.zip4j.core.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
-
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -34,33 +24,8 @@ public class Globals {
 	// used for checking which keys can be sent
 	public static ArrayList<Integer> allowedKeys = new ArrayList<Integer>();
 	
+	// our chatbox
 	public static Chat chat;
-	
-	public static void downloadData() throws IOException {
-		URL dataFile = new URL(DATA_URL);
-		ReadableByteChannel rbc = Channels.newChannel(dataFile.openStream());
-		FileOutputStream fos = new FileOutputStream(DATA_DIR);
-		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-		fos.close();
-		
-	    // unzip it
-	    unZip(DATA_DIR, System.getProperty("user.dir") + "/data/");
-	   
-	}
-	
-	// unzipping .zip files
-	public static void unZip(String fileName, String outputFolder) throws IOException{
-
-	    try {
-	         ZipFile zipFile = new ZipFile(fileName);
-	         zipFile.extractAll(outputFolder);
-	    } catch (ZipException e) {
-	        e.printStackTrace();
-	    }
-	    
-	   File file = new File(fileName);
-	   file.delete();
-    }
 	
 	// maps
 	public static void initMaps() throws SlickException {
@@ -71,10 +36,5 @@ public class Globals {
 		}
 		
 		mapsInited = true;
-	}
-	
-	// check if any textboxes are selected
-	public static void anyTextboxesFocused() {
-		
 	}
 }

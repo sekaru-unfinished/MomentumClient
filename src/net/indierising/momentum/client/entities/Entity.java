@@ -7,14 +7,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Entity {
+	int id;
 	private Vector2f pos;
 	float width, height;
 	int dir;
-	int id;
 	private String imageLoc;
-	
 	private Image image;
-
 	
 	public Entity(int id, Vector2f pos, float width, float height, int dir, String imageLoc){
 		this.pos = pos;
@@ -31,12 +29,24 @@ public class Entity {
 		}
 	}
 	
+	public int getID() {
+		return id;
+	}
+	
 	public String getImageLoc() {
 		return imageLoc;
 	}
 
 	public void setImageLoc(String location) {
 		this.imageLoc = location;
+	}
+	
+	public float getWidth() {
+		return width;
+	}
+	
+	public float getHeight() {
+		return height;
 	}
 
 	public float getX() {

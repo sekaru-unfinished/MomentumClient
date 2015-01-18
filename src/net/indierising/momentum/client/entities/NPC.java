@@ -1,5 +1,7 @@
 package net.indierising.momentum.client.entities;
 
+import net.indierising.momentum.client.entitydata.NPCData;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -7,8 +9,8 @@ public class NPC extends Entity{
 	private int damage,health;
 	private String name;
 		
-	public NPC(int id, Vector2f pos, float width, float height, int dir, String imageLoc,int health,int damage,String name){
-		super(id,pos,width,height,dir,imageLoc);
+	public NPC(NPCData data){
+		super(data.id, new Vector2f(data.x, data.y), data.width, data.height, data.dir, data.imageLoc);
 		this.setHealth(health);
 		this.setDamage(damage);
 		this.setName(name);
@@ -20,7 +22,6 @@ public class NPC extends Entity{
 			g.drawString(name, getX(), getY());
 		}
 	}
-
 
 	public void setDamage(int damage) {
 		this.damage = damage;

@@ -2,16 +2,15 @@ package net.indierising.momentum.client.entities;
 
 import java.util.ArrayList;
 
+import net.indierising.momentum.client.network.Packets.NPCMove;
 import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 
 public class EntityHandler {
 	public static ArrayList<Player> players = new ArrayList<Player>();
-	// the core sending for npcs.
 	public static ArrayList<Entity> npcs = new ArrayList<Entity>();
 	
 	public static void render(Graphics g){
@@ -21,6 +20,7 @@ public class EntityHandler {
 		for(int i = 0; i < npcs.size(); i++){
 			npcs.get(i).render(g);
 		}
+		
 		// try to do this, might need optimising, but very little gain from doing so.
 		try {
 			loadNPCImages();
@@ -60,10 +60,11 @@ public class EntityHandler {
 	}
 	
 	public static void addNPC(NPCPacket packet) {
-		if(getNPCByID(packet.id) == null) {
-		
-			npcs.add(new NPC(packet.id, new Vector2f(packet.x, packet.y), 32, 32, packet.direction, packet.imageLocation,packet.health,packet.damage,packet.name));
-		} else {
+		npcs.add(new NPC(packet.data));
+	}
+	
+	public static void moveNPC(NPCMove packet) {
+		if(getNPCByID(packet.id)!=null) {
 			getNPCByID(packet.id).setX(packet.x);
 			getNPCByID(packet.id).setY(packet.y);
 		}
