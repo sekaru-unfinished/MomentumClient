@@ -4,6 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Entity {
@@ -12,7 +13,7 @@ public class Entity {
 	float width, height;
 	int dir;
 	private String imageLoc;
-	private Image image;
+	private SpriteSheet image;
 	
 	public Entity(int id, Vector2f pos, float width, float height, int dir, String imageLoc){
 		this.pos = pos;
@@ -25,7 +26,7 @@ public class Entity {
 	
 	public void loadImage() throws SlickException{
 		if(image == null){
-			image = new Image(imageLoc);
+			image = new SpriteSheet(new Image(imageLoc),(int)width,(int)height);
 		}
 	}
 	
@@ -83,5 +84,9 @@ public class Entity {
 	
 	public void update(int delta) {
 		setX(getX() + 0.3f);
+	}
+
+	public SpriteSheet getImage() {
+		return image;
 	}
 }

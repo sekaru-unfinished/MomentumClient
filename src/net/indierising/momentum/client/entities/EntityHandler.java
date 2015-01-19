@@ -23,7 +23,7 @@ public class EntityHandler {
 		
 		// try to do this, might need optimising, but very little gain from doing so.
 		try {
-			loadNPCImages();
+			loadEntityImages();
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -70,9 +70,12 @@ public class EntityHandler {
 		}
 	}
 	
-	private static void loadNPCImages() throws SlickException{
+	private static void loadEntityImages() throws SlickException{
 		for(int i = 0; i < npcs.size(); i++){
 			npcs.get(i).loadImage();
+		}
+		for(int i = 0; i < players.size(); i++){
+			players.get(i).loadImage();
 		}
 	}
 }

@@ -7,10 +7,12 @@ public class PlayerData {
 	public int connectionID;
 	public String username;
 	public float x, y;
+	public float width, height;
 	public int dir;
 	public String imageLoc;
 	public int map;
 	public PlayerClass playerClass;
+	
 	public PlayerData() {}
 	
 	public PlayerData(Player player) {
@@ -18,6 +20,8 @@ public class PlayerData {
 		this.username = player.getUsername();
 		this.x = player.getX();
 		this.y = player.getY();
+		this.width = player.getWidth();
+		this.height = player.getHeight();
 		this.dir = player.getDir();
 		this.imageLoc = player.getImageLoc();
 		this.playerClass = player.getPlayerClass();
