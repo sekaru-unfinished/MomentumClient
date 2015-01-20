@@ -1,5 +1,6 @@
 package net.indierising.momentum.client.entities;
 
+import net.indierising.momentum.client.Globals;
 import net.indierising.momentum.client.entitydata.NPCData;
 
 import org.newdawn.slick.Animation;
@@ -11,7 +12,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class NPC extends Entity{
 	private int damage,health;
 	private String name;
-	private Animation leftAnim,rightAnim,upAnim,downAnim;
+	private Animation sprite[] = new Animation[4];
 	
 	public NPC(NPCData data){
 		super(data.id, new Vector2f(data.x, data.y), data.width, data.height, data.dir, data.imageLoc);
@@ -26,51 +27,50 @@ public class NPC extends Entity{
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		if(getImage() != null){
-			if(downAnim == null){
-				downAnim = new Animation(new Image[] {
+		
+		if(getImage() != null) {
+			// up 
+			if(sprite[Globals.DIR_UP] == null) {
+				sprite[Globals.DIR_UP] = new Animation(new Image[] {
 						getImage().getSubImage(0, 0), getImage().getSubImage(1, 0),
-						getImage().getSubImage(2, 0),getImage().getSubImage(3, 0) }, 4);
+						getImage().getSubImage(2, 0), getImage().getSubImage(3, 0)}, 4);
 			}
-			if(leftAnim == null){
-				leftAnim = new Animation(new Image[] {
-						getImage().getSubImage(0, 1), getImage().getSubImage(1, 1),
-						getImage().getSubImage(2, 1),getImage().getSubImage(3, 1) }, 4);
-			}
-			if(rightAnim == null){
-				rightAnim = new Animation(new Image[] {
-						getImage().getSubImage(0, 2), getImage().getSubImage(1, 2),
-						getImage().getSubImage(2, 2),getImage().getSubImage(3, 2) }, 4);
-			}
-			if(upAnim == null){
-				upAnim = new Animation(new Image[] {
-						getImage().getSubImage(0, 3), getImage().getSubImage(1, 3),
-						getImage().getSubImage(2, 3),getImage().getSubImage(3, 3) }, 4);
-			}
-			upAnim.setSpeed(0.03f);
-			downAnim.setSpeed(0.03f);
-			leftAnim.setSpeed(0.03f);
-			rightAnim.setSpeed(0.03f);
 			
+			// down
+			if(sprite[Globals.DIR_DOWN] == null) {
+				sprite[Globals.DIR_DOWN] = new Animation(new Image[] {
+						getImage().getSubImage(0, 1), getImage().getSubImage(1, 1),
+						getImage().getSubImage(2, 1), getImage().getSubImage(3, 1)}, 4);
+			}
+			
+			// left
+			if(sprite[Globals.DIR_LEFT] == null) {
+				sprite[Globals.DIR_LEFT] = new Animation(new Image[] {
+						getImage().getSubImage(0, 2), getImage().getSubImage(1, 2),
+						getImage().getSubImage(2, 2), getImage().getSubImage(3, 2)}, 4);
+			}
+			
+			// right
+			if(sprite[Globals.DIR_RIGHT] == null) {
+				sprite[Globals.DIR_RIGHT] = new Animation(new Image[] {
+						getImage().getSubImage(0, 3), getImage().getSubImage(1, 3),
+						getImage().getSubImage(2, 3), getImage().getSubImage(3, 3)}, 4);
+			}
+			
+			// set the speeds
+			for(int i=0; i<sprite.length; i++) {
+				sprite[i].setSpeed(0.03f);
+			}
 		}
 	}
 	
 	public void render(Graphics g){
-		if(getImage() != null){
-			if(getDir() == 0){
-				downAnim.start();
-				downAnim.draw(getX(),getY());
-			}else if(getDir() == 3){
-				upAnim.start();
-				upAnim.draw(getX(),getY());
-			}else if(getDir() == 1){
-				leftAnim.start();
-				leftAnim.draw(getX(),getY());
-			}else if(getDir() == 2){
-				rightAnim.start();
-				rightAnim.draw(getX(),getY());
-			}
+		// sprite
+		if(getImage() != null) {
+			sprite[getDir()].draw(getX(), getY());
 		}
+		
+		// name
 		if(name != null){
 			g.drawString(name, getX(), getY());
 		}
