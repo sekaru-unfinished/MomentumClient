@@ -1,7 +1,9 @@
 package net.indierising.momentum.client;
 
 import java.util.ArrayList;
+
 import net.indierising.momentum.client.utils.Chat;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -24,6 +26,35 @@ public class Globals {
 	public static int DIR_DOWN;
 	public static int DIR_LEFT;
 	public static int DIR_RIGHT;
+	
+	// randomness
+	public static int rand(int min, int max) {
+        return min + (int) (Math.random() * ((max - min) + 1));
+    }
+
+    public static float rand(float min, float max) {
+        return min + (float) (Math.random() * ((max - min) + 1));
+    }
+
+    public static int randNoZero(int min, int max) {
+        int rand = min + (int) (Math.random() * ((max - min) + 1));
+
+        if (rand != 0) {
+            return rand;
+        } else {
+            return randNoZero(min, max);
+        }
+    }
+
+    public static float randNoZero(float min, float max) {
+        float rand = min + (float) (Math.random() * ((max - min) + 1));
+
+        if (rand != 0) {
+            return rand;
+        } else {
+            return randNoZero(min, max);
+        }
+    }
 	
 	// our chatbox
 	public static Chat chat;

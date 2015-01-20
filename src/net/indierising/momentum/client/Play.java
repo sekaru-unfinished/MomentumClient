@@ -2,6 +2,7 @@ package net.indierising.momentum.client;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import net.indierising.momentum.client.entities.EntityHandler;
 import net.indierising.momentum.client.entitydata.PlayerData;
@@ -15,10 +16,13 @@ import net.indierising.momentum.client.utils.Chat;
 import net.indierising.momentum.client.utils.TagReader;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL14;
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
@@ -31,6 +35,11 @@ public class Play extends BasicGameState {
 	public GUI gui;
 	public static Camera camera;
 	
+	 // lighting
+    private Image lightsImage;
+    private Graphics lightsGraphics;
+    public static ArrayList<Light> lights = new ArrayList<Light>();
+	
 	public Play() {}
 	 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -42,12 +51,19 @@ public class Play extends BasicGameState {
 		gui = new GUI(font);
 		gui.textboxes.add(new Textbox(gc, gui, new Vector2f(16, gc.getHeight()-38), 500, 140, Color.white, Color.black));
 		
-		// TODO add acceptable keys do this somewhere else eventually
+		// add acceptable keys do this somewhere else eventually
 		Globals.allowedKeys.add(Keyboard.KEY_W);
 		Globals.allowedKeys.add(Keyboard.KEY_A);
 		Globals.allowedKeys.add(Keyboard.KEY_S);
 		Globals.allowedKeys.add(Keyboard.KEY_D);
 		Globals.allowedKeys.add(Keyboard.KEY_SPACE);
+		
+		// lights
+        lightsImage = Image.createOffscreenImage(gc.getWidth(), gc.getHeight());
+        lightsGraphics = lightsImage.getGraphics();
+        
+        lights.add(new Light(18*32, 3*32, 1, 0.2f, "light"));
+        lights.add(new Light(21*32, 21*32, 1, 0.2f, "light"));
 	}
 	
 	public static void tryConnect() {
@@ -76,10 +92,29 @@ public class Play extends BasicGameState {
 		packet.data.username = Globals.username;
 		Network.client.sendTCP(packet);
 	}
-
+	
+	Color lighting;
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		if(Globals.connectionID!=-1) {
 			if(Globals.mapsInited) {
+				 // set the brightness outside lit-up areas
+		        int brightness = Integer.valueOf(camera.map.getMapProperty("brightness", "75"));
+		        lighting = new Color(brightness, brightness, brightness);
+		        
+		        // start lighting
+		        Graphics.setCurrent(lightsGraphics);
+		        lightsGraphics.setBackground(lighting);
+		        lightsGraphics.clear();
+		        GL14.glBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+		        for(int i = 0; i < lights.size(); i++) {
+		            lights.get(i).render();
+		        }
+
+		        lightsGraphics.setDrawMode(Graphics.MODE_NORMAL);
+		        lightsGraphics.flush();
+		        Graphics.setCurrent(g);
+		        
 				// draw the map
 				camera.drawMap();
 				camera.translateGraphics();
@@ -94,6 +129,11 @@ public class Play extends BasicGameState {
 				
 				// untranslate the map so we can render the gui normally
 				camera.untranslateGraphics();
+				
+				// end lighting
+		        GL11.glBlendFunc(GL11.GL_ZERO, GL11.GL_SRC_COLOR);
+		        lightsImage.draw();
+		        g.setDrawMode(Graphics.MODE_NORMAL);
 			}
 			
 			// gui
