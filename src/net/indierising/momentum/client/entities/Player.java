@@ -22,7 +22,7 @@ public class Player extends Entity {
 	private Animation sprite[] = new Animation[4];
 	
 	public Player(PlayerData data){
-		super(data.connectionID, new Vector2f(data.x, data.y), data.width, data.height, data.dir, data.imageLoc);
+		super(data.connectionID, new Vector2f(data.x, data.y), WIDTH, HEIGHT, data.dir, data.imageLoc);
 		this.setConnectionID(data.connectionID);
 		this.setUsername(data.username);
 		this.setMap(data.map);
