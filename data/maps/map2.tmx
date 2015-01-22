@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tileset" tilewidth="32" tileheight="32">
+  <image source="tilesets/Tileset.png" width="256" height="2048"/>
+ </tileset>
+ <tileset firstgid="513" name="Attributes" tilewidth="32" tileheight="32">
+  <image source="tilesets/Attributes.png" width="64" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="warp" value="2"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Ground1" width="45" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwwENAAAMw6DOv+kLOSSsmqqqqqrqowfBJQVH
+  </data>
+ </layer>
+ <layer name="Ground2" width="45" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztl8EOwiAMhknEk9ttHOaNPdkejUfx0YRUksrogEGnS/iTP5qF0Q9oiwrBq1GI1/DxyByrlTrzOerM56gznyPMvAixKutfM6WEmZ2nzsyiqzEryOHLMMd4F3herQnWTrqkzhV6j4vXaQjmDq2hr645Djk5eHOYa92aFzNr2CuDrQ+sabZ+MvJ6Zg3300b2mbG5KUp8s/PdraW1+56Kr2CsiJmqJSpnOe9YzEnVgL/rY+x742t7CbWHe5wUC455pK50oj9623GmpFYlfEbfwXse5iP1DmdfkXB2/myMRHUcY4+cZ7TuWqxlhlz5MtVXHAcVMycvW6zF7WdOHwlj+rXhOCVzpOaVkMObGpl39vNInFrmYN7N7wznR+M4rUTxct2Ftboar1P4X+TfeZ1CZm7eN6yNG5o=
+  </data>
+ </layer>
+ <layer name="Objects1" width="45" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztmM0NgDAIRtlDb51AjQd1/73sxQSJ/bF+NKh9CQeNBQrSFIi+RcdEvreKo7Pfx7M2Mk4u8m0fWMt9RyDtSA6b3Ic7aPgcYvAyepmoTl5ngI7Fy+plA+ji+38LyP03Gl+h1fJ/aLn+F6k7l3VbNe/MId5SM/z+bL1mugvJQTsXMf2l/YV2LmL6S2Ic4078S3oW2SsjeBL/nDMN4auFcy7F1ZzA0bkmUDnTRNYxIua15g6oGQdfrz2bsvZv7HhUFJw=
+  </data>
+ </layer>
+ <layer name="Fringe1" width="45" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt18EJACAIhWGX6VDR/uvlCAoqRv8HXpV6eFAEyDUCekytpbUDelmcojlW1e8HkINd/gdZAz7sTB/ZWXTNOuJmieD5n243CwC86AJk5QSV
+  </data>
+ </layer>
+ <layer name="Attributes" width="45" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt08ENACAIA0B0/6HdwMCDhOjdApA2jQC6rP3mrayJPwF1tvwPXUONzczR3YWu77L5yBGY5gBP1wAf
+  </data>
+ </layer>
+</map>

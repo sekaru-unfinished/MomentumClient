@@ -11,6 +11,7 @@ import net.indierising.momentum.client.network.Packets.Key;
 import net.indierising.momentum.client.network.Packets.NPCMove;
 import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerClass;
+import net.indierising.momentum.client.network.Packets.PlayerMapChange;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 
@@ -52,6 +53,7 @@ public class Network {
 		kryo.register(PlayerData.class);
 		kryo.register(PlayerMove.class);
 		kryo.register(PlayerClass.class);
+		kryo.register(PlayerMapChange.class);
 		
 		kryo.register(NPCData.class);
 		kryo.register(NPCPacket.class);

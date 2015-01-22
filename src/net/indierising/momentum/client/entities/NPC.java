@@ -21,7 +21,7 @@ public class NPC extends Entity{
 		this.setName(name);
 	}
 	
-	public void loadImage(){
+	public void loadImage() {
 		try {
 			super.loadImage();
 		} catch (SlickException e) {

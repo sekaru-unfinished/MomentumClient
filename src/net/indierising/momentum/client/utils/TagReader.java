@@ -25,6 +25,12 @@ public class TagReader {
 			e.printStackTrace();
 		}
         in = new BufferedReader(reader);
+        
+        try {
+			read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void read() throws IOException {

@@ -63,6 +63,7 @@ public class Globals {
 	public static void initMaps() throws SlickException {
 		maps.clear();
 		
+		System.out.println(MAX_MAPS);
 		for(int i=0; i<MAX_MAPS; i++) {
 			maps.add(new TiledMap("data/maps/map" + (i+1) + ".tmx"));
 		}

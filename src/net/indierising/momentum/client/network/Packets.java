@@ -45,4 +45,9 @@ public class Packets {
 		public int id,damage,health;
 		// TODO add abilities
 	}
+	
+	public static class PlayerMapChange {
+		public int playerID, mapID;
+		public String mapName;
+	}
 }

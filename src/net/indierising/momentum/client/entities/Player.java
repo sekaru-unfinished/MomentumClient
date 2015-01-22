@@ -17,7 +17,7 @@ public class Player extends Entity {
 	boolean up, down, left, right;
 	private int connectionID;
 	private String username;
-	private int map;
+	private int map; public String mapName;
 	private PlayerClass playerClass;
 	private Animation sprite[] = new Animation[4];
 	
@@ -29,7 +29,7 @@ public class Player extends Entity {
 		this.setPlayerClass(data.playerClass);
 	}
 	
-	public void loadImage(){
+	public void loadImage() {
 		try {
 			super.loadImage();
 		} catch (SlickException e) {

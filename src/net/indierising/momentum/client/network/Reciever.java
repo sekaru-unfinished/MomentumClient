@@ -8,6 +8,7 @@ import net.indierising.momentum.client.network.Packets.ChatMessage;
 import net.indierising.momentum.client.network.Packets.ConstantsPacket;
 import net.indierising.momentum.client.network.Packets.NPCMove;
 import net.indierising.momentum.client.network.Packets.NPCPacket;
+import net.indierising.momentum.client.network.Packets.PlayerMapChange;
 import net.indierising.momentum.client.network.Packets.PlayerMove;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 
@@ -69,6 +70,12 @@ public class Reciever extends Listener {
 		if(obj instanceof ChatMessage){
 			ChatMessage packet = (ChatMessage) obj;
 			Globals.chat.add(packet);
+		}
+		
+		// players changing maps
+		if(obj instanceof PlayerMapChange) {
+			int conID = ((PlayerMapChange) obj).playerID;
+			EntityHandler.getPlayerByID(conID).setMap(((PlayerMapChange) obj).mapID);
 		}
 	}
 
