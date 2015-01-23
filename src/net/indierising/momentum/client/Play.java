@@ -67,13 +67,7 @@ public class Play extends BasicGameState {
 	}
 	
 	public static void tryConnect() {
-		TagReader config = null;
-		try {
-			config = new TagReader(new File("data/config.txt"));
-			config.read();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		TagReader config = new TagReader(new File("data/config.txt"));
 		
 		try {
 			// load the ports and ip from the config file

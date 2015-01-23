@@ -33,7 +33,7 @@ public class TagReader {
 		}
 	}
 	
-	public void read() throws IOException {
+	private void read() throws IOException {
 		String line;
 		
 		// read all the lines until the bottom of the file

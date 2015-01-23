@@ -10,6 +10,11 @@
     <property name="blocked" value="true"/>
    </properties>
   </tile>
+  <tile id="1">
+   <properties>
+    <property name="warp" value="2"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Ground1" width="45" height="30">
   <data encoding="base64" compression="zlib">
@@ -18,12 +23,12 @@
  </layer>
  <layer name="Ground2" width="45" height="30">
   <data encoding="base64" compression="zlib">
-   eJztl9EOgjAMRZuoT8obPOjb+DI+jU/h09zNWDJKNxnSZSTc5CZEsT3r1oJEOuqIpt76Za+9G6VcR0jirZk5xtu776rT2XihJy1ZtXjvs23c4Z84qPGb1szGfu5zHJGHaFGPYW/cm/v96kxIRp7W3sudkzMWNxajY3WDpfrmOmct9t5RivGhZc0969Z6HmVpLZZlvLt+F9n9mclhNS4P/bLZuY5gz8cYd6IG2IuJe+ucQM7YelIsPEaq5pxTc+aCpWH2+xK7X6rfVk7MEZynx3wt9VbKUt+hn8xcy6MVPgvRx3tmCma6resQ2gR7r8Wr6RK86AF+NmPeMku0eMHpZ0BOr6ZmibcWb63vcVDL5mLtvBBnrvW/SKiLuYz4e8oZmKEmmBsXs54u5jK6mMuoNPMXu8tvCw==
+   eJztmM0OgzAIx0l0J+dpethu9cl8NB/FRxtEyZC1nV+4mkjyTxbn4FcKWAdgawXqPqo0jrXFMlQ+6gnpM9cAfYNiTlYzfJecnY2XTNauJS/XHfptt/ihHMvaZTm8zjH2iAMwyUe71m82/P6rJnyiOBXeq7UkZshvyEet8qZnw1otWQve2/l8vGCac2adm8+95FsLsnT50O9edq6ZJaxuiAO/5FauQ+x5F+KO5ID2oteaOycoZmg9MRbtI5ZzzWk5c4mlVOJ9Cd3vy99cTn5238bPvt6Kydd31E9uzOXeJp+F1MdrZgrNdMxrK+XE3lvxWuoIXuoBXZshzZklVrzEyTNgSa/GZgnLijfVcxxZpeZi6rxkmjnVdxFpF/Mxps8pZ2AmK8XcuJjt7AGfszC/K/AZKWWT3CzJn+oafNxSBdbQ3+AiRtyh96dUmbXJ/2n2Yn4DV1JrYA==
   </data>
  </layer>
  <layer name="Objects1" width="45" height="30">
   <data encoding="base64" compression="zlib">
-   eJztmEEOwyAMBPlHeuMFbdVD2///q1yQthY4QNZAIkbyIVECxgZ7E+euxQYm78+Kd/9+x2trZJy88uwt8y76zkDOI4lzog81WPic4x7sEezp+uT1RRjjHewT7EsYC9d/FpjrXyyuwjrL5+JInxmVa60np7QKXo/KtU/4EsGe30tzlCB9Qc0ldShbs+zpuxyafpLx7aWfkdSZ2cv3iH2B+nn2+rglrATr+qWN35pT61xo47fEWKMm/i3fLLJGMTgS/5KaxvB1VG2rIfWfAPsIM2eWyHPMiHmvWs/qK/i+dW+dbW/8AFvpGNs=
+   eJztmFEOgyAMhrkHe+MEbtnD5v3vNV5I/jWlAraAhi9pDEaxttD+6ty98GD0/KwE9+93GltD4xSEax+Ze9F3DehzKOmZ6EMNFj7n2KI9o71cn7y+Feb4RPtG2xXmwve/Cprvv1jchbWXr8WZPjMq11JP5rQKjkflOjC+JLDn99IcJVBfUHNRHaqtWY70XQ5JP9H49tLPCLdnjvI9Yl2gfp69PnrGSrCuX9L8rTm1zoU0f0uMJWri3/LNQmuUBmfiX1LTNHwdVdtq4P4TYB/RzJkldB9rxLxXrdfsKx6OlutvtrXxA0FVGMA=
   </data>
  </layer>
  <layer name="Fringe1" width="45" height="30">
@@ -33,7 +38,7 @@
  </layer>
  <layer name="Attributes" width="45" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1NEJACAIBUBr/6HbIPRDkLpbQHkPjQC6rP3mrKyJOwF12y1/w9+GGjczR3cXur7L5iNHYJoDXMMAIA==
+   eJzt08ENACAIA0B0/6HdwMCDhOjdApA2jQC6rP3mrayJPwF1tvwPXUONzczR3YWu77L5yBGY5gBP1wAf
   </data>
  </layer>
 </map>

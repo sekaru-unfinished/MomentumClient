@@ -1,5 +1,7 @@
 package net.indierising.momentum.client.network;
 
+import net.indierising.momentum.client.Camera;
+import net.indierising.momentum.client.Game;
 import net.indierising.momentum.client.Globals;
 import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entities.EntityHandler;
@@ -76,6 +78,7 @@ public class Reciever extends Listener {
 		if(obj instanceof PlayerMapChange) {
 			int conID = ((PlayerMapChange) obj).playerID;
 			EntityHandler.getPlayerByID(conID).setMap(((PlayerMapChange) obj).mapID);
+			Play.camera = new Camera(Game.app, Globals.maps.get(EntityHandler.getPlayerByID(conID).getMap()));
 		}
 	}
 
