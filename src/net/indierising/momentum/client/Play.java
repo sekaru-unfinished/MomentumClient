@@ -62,8 +62,17 @@ public class Play extends BasicGameState {
         lightsImage = Image.createOffscreenImage(gc.getWidth(), gc.getHeight());
         lightsGraphics = lightsImage.getGraphics();
         
-        lights.add(new Light(18*32, 3*32, 1, 0.2f, "light"));
-        lights.add(new Light(21*32, 21*32, 1, 0.2f, "light"));
+        lights.add(new Light(18*32, 3*32, 0.3f, 0.2f, "white_c"));
+        lights.add(new Light(17*32, 3*32, 0.5f, 0.2f, "magenta_c"));
+        lights.add(new Light(19*32, 3*32, 0.5f, 0.2f, "magenta_c"));
+        lights.add(new Light(18*32, 4*32, 0.5f, 0.2f, "cyan_c"));
+        lights.add(new Light(18*32, 2*32, 0.6f, 0.2f, "yellow_c"));
+        
+        lights.add(new Light(10*32, 6*32, 1f, 0.5f, "magenta_c"));
+        lights.add(new Light(16*32, 14*32, 1f, 0.5f, "yellow_c"));
+        lights.add(new Light(28*32, 11*32, 1f, 0.5f, "cyan_c"));
+        
+        lights.add(new Light(21*32, 21*32, 1, 0.2f, "white_c"));
 	}
 	
 	public static void tryConnect() {
@@ -130,15 +139,15 @@ public class Play extends BasicGameState {
 		        g.setDrawMode(Graphics.MODE_NORMAL);
 			}
 			
+			// names
+			EntityHandler.renderNames(g);
+			
 			// gui
 			Globals.chat.render(g);
-			
 			if(gui!=null) {
 				for(int i=0; i<gui.textboxes.size(); i++) {
 					gui.textboxes.get(i).render(g);
 				}
-			} else {
-				g.drawString("Loading...", 50, 50);
 			}
 		} else {
 			g.drawString("Connecting...", 50, 50);
@@ -231,16 +240,6 @@ public class Play extends BasicGameState {
 			enterMenu = false;
 		}
 		
-		// find their id
-		if(Globals.connectionID==-1 && EntityHandler.players.size()>0) {
-			for(int i=0; i<EntityHandler.players.size(); i++) {
-				if(EntityHandler.players.get(i).getUsername().equals(Globals.username)) {
-					Globals.connectionID = EntityHandler.players.get(i).getConnectionID();
-					break;
-				}
-			}
-		}
-		
 		// init the maps
 		if(doInitMaps && EntityHandler.getPlayerByID(Globals.connectionID) != null) {
 			try {
@@ -252,9 +251,14 @@ public class Play extends BasicGameState {
 			doInitMaps = false;
 			
 			// init the camera
-			
 			camera = new Camera(gc, Globals.maps.get(EntityHandler.getPlayerByID(Globals.connectionID).getMap()));
-		} 
+			Play.camera.centerOn(EntityHandler.getPlayerByID(Globals.connectionID).getX(), EntityHandler.getPlayerByID(Globals.connectionID).getY());
+		}
+		
+		// update entities
+		if(Globals.connectionID!=-1) {
+			EntityHandler.update(gc, delta);
+		}
 	}
 
 	public int getID() {

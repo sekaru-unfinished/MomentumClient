@@ -1,24 +1,26 @@
 package net.indierising.momentum.client.entities;
 
 import net.indierising.momentum.client.Globals;
+import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entitydata.NPCData;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 public class NPC extends Entity{
-	private int damage,health;
+	private float damage,health;
 	private String name;
 	private Animation sprite[] = new Animation[4];
 	
 	public NPC(NPCData data){
 		super(data.id, new Vector2f(data.x, data.y), data.width, data.height, data.dir, data.imageLoc);
-		this.setHealth(health);
-		this.setDamage(damage);
-		this.setName(name);
+		this.setHealth(data.health);
+		this.setDamage(data.damage);
+		this.setName(data.name);
 	}
 	
 	public void loadImage() {
@@ -59,7 +61,7 @@ public class NPC extends Entity{
 			
 			// set the speeds
 			for(int i=0; i<sprite.length; i++) {
-				sprite[i].setSpeed(0.03f);
+				sprite[i].setSpeed(0.015f);
 			}
 		}
 	}
@@ -69,26 +71,35 @@ public class NPC extends Entity{
 		if(getImage() != null) {
 			sprite[getDir()].draw(getX(), getY());
 		}
-		
+	}
+	
+	public void renderName(Graphics g) {
 		// name
-		if(name != null){
-			g.drawString(name, getX(), getY());
+		if(getName() != null){
+			g.drawString(getName(), getX() - Play.camera.x, getY()-10 - Play.camera.y);
+		}
+	}
+	
+	public void update(GameContainer gc, int delta) {
+		// update the sprite
+		if(getImage()!=null) {
+			sprite[getDir()].update(delta);
 		}
 	}
 
-	public void setDamage(int damage) {
+	public void setDamage(float damage) {
 		this.damage = damage;
 	}
 
-	public int getDamage() {
+	public float getDamage() {
 		return damage;
 	}
 
-	public void setHealth(int health) {
+	public void setHealth(float health) {
 		this.health = health;
 	}
 
-	public int getHealth() {
+	public float getHealth() {
 		return health;
 	}
 
@@ -99,6 +110,4 @@ public class NPC extends Entity{
 	public String getName() {
 		return name;
 	}
-
-
 }

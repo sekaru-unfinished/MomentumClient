@@ -24,9 +24,9 @@ public class Entity {
 		this.setImageLoc(imageLoc);
 	}
 	
-	public void loadImage() throws SlickException{
+	public void loadImage() throws SlickException {
 		if(image == null){
-			image = new SpriteSheet(new Image(imageLoc),(int)width,(int)height);
+			image = new SpriteSheet(new Image("data/assets/sprites/" + imageLoc + ".png"), (int) width, (int) height);
 		}
 	}
 	

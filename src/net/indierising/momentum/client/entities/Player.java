@@ -1,13 +1,16 @@
 package net.indierising.momentum.client.entities;
 
 import net.indierising.momentum.client.Globals;
+import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entitydata.PlayerData;
 import net.indierising.momentum.client.network.Packets.PlayerClass;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -68,6 +71,7 @@ public class Player extends Entity {
 			// set the speeds
 			for(int i=0; i<sprite.length; i++) {
 				sprite[i].setSpeed(0.03f);
+				sprite[i].stop();
 			}
 		}
 	}
@@ -85,8 +89,24 @@ public class Player extends Entity {
 		}
 	}
 	
-	public void update(int delta) {
+	public void renderName(Graphics g) {
+		// name
+		g.drawString(getUsername(), getX() - Play.camera.x, getY()-10 - Play.camera.y);
+	}
+	
+	public void update(GameContainer gc, int delta) {
+		Input input = gc.getInput();
 		
+		// check if any movement keys are down
+		if(getImage()!=null) {
+			sprite[getDir()].update(delta);
+			if(input.isKeyDown(Input.KEY_W) || input.isKeyDown(Input.KEY_A) || input.isKeyDown(Input.KEY_S) || input.isKeyDown(Input.KEY_D)) {
+				sprite[getDir()].start();
+			} else {
+				sprite[getDir()].stop();
+				sprite[getDir()].setCurrentFrame(0);
+			}
+		}
 	}
 	
 	public int getConnectionID() {

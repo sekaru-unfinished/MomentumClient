@@ -5,6 +5,7 @@ import net.indierising.momentum.client.entitydata.PlayerData;
 
 public class Packets {
 	public static class ConstantsPacket {
+		public int conID;
 		public int TILE_SIZE, MAX_MAPS, MAX_MAP_NPCS;
 		public float PLAYER_WIDTH, PLAYER_HEIGHT;
 		public int DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT;

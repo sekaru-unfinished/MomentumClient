@@ -6,26 +6,42 @@ import net.indierising.momentum.client.network.Packets.NPCMove;
 import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 public class EntityHandler {
 	public static ArrayList<Player> players = new ArrayList<Player>();
-	public static ArrayList<Entity> npcs = new ArrayList<Entity>();
+	public static ArrayList<NPC> npcs = new ArrayList<NPC>();
 	
-	public static void render(Graphics g){
-		for(int i = 0; i < players.size(); i++){
+	public static void render(Graphics g) {
+		// players
+		for(int i = 0; i < players.size(); i++) {
 			players.get(i).render(g);
 		}
-		for(int i = 0; i < npcs.size(); i++){
+		
+		// npcs
+		for(int i = 0; i < npcs.size(); i++) {
 			npcs.get(i).render(g);
 		}
 		
-		// try to do this, might need optimising, but very little gain from doing so.
+		// load the images
 		try {
 			loadEntityImages();
 		} catch (SlickException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void renderNames(Graphics g) {
+		// players
+		for(int i = 0; i < players.size(); i++) {
+			players.get(i).renderName(g);
+		}
+		
+		// npcs
+		for(int i = 0; i < npcs.size(); i++) {
+			npcs.get(i).renderName(g);
 		}
 	}
 	
@@ -35,32 +51,40 @@ public class EntityHandler {
 				return players.get(i);
 			}
 		}
+		
 		// if we can't find them sorry.
 		return null;
 	}
 	
-	public static void addPlayer(PlayerPacket packet) {
-		if(getPlayerByID(packet.data.connectionID) == null) {
-			players.add(new Player(packet.data));
-			
-		} else {
-			getPlayerByID(packet.data.connectionID).setX(packet.data.x);
-			getPlayerByID(packet.data.connectionID).setY(packet.data.y);
+	public static void update(GameContainer gc, int delta) {
+		// players
+		for(int i = 0; i < players.size(); i++) {
+			players.get(i).update(gc, delta);
+		}
+		
+		// npcs
+		for(int i = 0; i < npcs.size(); i++) {
+			npcs.get(i).update(gc, delta);
 		}
 	}
 	
-	public static Entity getNPCByID(int id){
+	public static void addPlayer(PlayerPacket packet) {
+		players.add(new Player(packet.data));
+	}
+	
+	public static void addNPC(NPCPacket packet) {
+		npcs.add(new NPC(packet.data));
+	}
+	
+	public static NPC getNPCByID(int id){
 		for(int i = 0; i < npcs.size(); i++){
 			if(npcs.get(i).id == id) {
 				return npcs.get(i);
 			}
 		}
+		
 		// if we can't find them sorry.
 		return null;
-	}
-	
-	public static void addNPC(NPCPacket packet) {
-		npcs.add(new NPC(packet.data));
 	}
 	
 	public static void moveNPC(NPCMove packet) {
@@ -71,10 +95,11 @@ public class EntityHandler {
 	}
 	
 	private static void loadEntityImages() throws SlickException{
-		for(int i = 0; i < npcs.size(); i++){
+		for(int i = 0; i < npcs.size(); i++) {
 			npcs.get(i).loadImage();
 		}
-		for(int i = 0; i < players.size(); i++){
+		
+		for(int i = 0; i < players.size(); i++) {
 			players.get(i).loadImage();
 		}
 	}

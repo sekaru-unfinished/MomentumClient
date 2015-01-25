@@ -23,6 +23,8 @@ public class Reciever extends Listener {
 	public void received(Connection con, Object obj) {
 		// constants
 		if(obj instanceof ConstantsPacket) {
+			Globals.connectionID = ((ConstantsPacket) obj).conID;
+			
 			Globals.TILE_SIZE = ((ConstantsPacket) obj).TILE_SIZE;
 			Globals.MAX_MAPS = ((ConstantsPacket) obj).MAX_MAPS;
 			Globals.MAX_MAP_NPCS = ((ConstantsPacket) obj).MAX_MAP_NPCS;
