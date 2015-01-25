@@ -2,6 +2,7 @@ package net.indierising.momentum.client.entities;
 
 import java.util.ArrayList;
 
+import net.indierising.momentum.client.gui.GUI;
 import net.indierising.momentum.client.network.Packets.NPCMove;
 import net.indierising.momentum.client.network.Packets.NPCPacket;
 import net.indierising.momentum.client.network.Packets.PlayerPacket;
@@ -33,15 +34,15 @@ public class EntityHandler {
 		}
 	}
 	
-	public static void renderNames(Graphics g) {
+	public static void renderNames(GUI gui) {
 		// players
 		for(int i = 0; i < players.size(); i++) {
-			players.get(i).renderName(g);
+			players.get(i).renderName(gui);
 		}
 		
 		// npcs
 		for(int i = 0; i < npcs.size(); i++) {
-			npcs.get(i).renderName(g);
+			npcs.get(i).renderName(gui);
 		}
 	}
 	

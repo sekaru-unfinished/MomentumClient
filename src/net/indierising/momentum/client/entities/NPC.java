@@ -3,6 +3,7 @@ package net.indierising.momentum.client.entities;
 import net.indierising.momentum.client.Globals;
 import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entitydata.NPCData;
+import net.indierising.momentum.client.gui.GUI;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -73,11 +74,12 @@ public class NPC extends Entity{
 		}
 	}
 	
-	public void renderName(Graphics g) {
+	public void renderName(GUI gui) {
 		// name
-		if(getName() != null){
-			g.drawString(getName(), getX() - Play.camera.x, getY()-10 - Play.camera.y);
-		}
+		float x = getX() + getWidth()/2 - gui.font.getWidth(getName())/2;
+		float y = getY() - 15;
+		
+		gui.font.drawString(x - Play.camera.x, y - Play.camera.y, getName());
 	}
 	
 	public void update(GameContainer gc, int delta) {

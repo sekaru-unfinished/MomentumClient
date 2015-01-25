@@ -47,7 +47,7 @@ public class Play extends BasicGameState {
 		Globals.chat = new Chat(10);
 		
 		// gui
-		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
+		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font_small.fnt", "data/assets/fonts/font_small.png");
 		gui = new GUI(font);
 		gui.textboxes.add(new Textbox(gc, gui, new Vector2f(16, gc.getHeight()-38), 500, 140, Color.white, Color.black));
 		
@@ -139,12 +139,15 @@ public class Play extends BasicGameState {
 		        g.setDrawMode(Graphics.MODE_NORMAL);
 			}
 			
-			// names
-			EntityHandler.renderNames(g);
-			
 			// gui
-			Globals.chat.render(g);
 			if(gui!=null) {
+				// names
+				EntityHandler.renderNames(gui);
+				
+				// chat
+				Globals.chat.render(gui);
+				
+				// textboxes
 				for(int i=0; i<gui.textboxes.size(); i++) {
 					gui.textboxes.get(i).render(g);
 				}
@@ -171,7 +174,7 @@ public class Play extends BasicGameState {
 			Network.client.sendUDP(packet);
 		} else {
 			// check keys to avoid clogging the server.
-			if(checkKey(key)){
+			if(checkKey(key)) {
 				Key packet = new Key();
 				packet.key = key;
 				packet.pressed = true;
@@ -182,7 +185,7 @@ public class Play extends BasicGameState {
 					ChatMessage messagePacket = new ChatMessage();
 					// assign the first textbox in the array, ROUGH JOB
 					messagePacket.message = gui.textboxes.get(0).text;
-					Network.client.sendUDP(messagePacket);
+					Network.client.sendTCP(messagePacket);
 					gui.textboxes.get(0).text = "";
 					gui.textboxes.get(0).unFocus();
 				}
@@ -192,7 +195,7 @@ public class Play extends BasicGameState {
 	
 	public void keyReleased(int key, char c) {
 		if(!gui.anyTextboxesFocused()) {
-			if(checkKey(key)){// checks keys that send release code
+			if(checkKey(key)) { // checks keys that send release code
 				Key packet = new Key();
 				packet.key = key;
 				packet.pressed = false;

@@ -10,12 +10,24 @@ public class Label {
 	public String text; GUI gui;
 	MouseOverArea labelArea; boolean labelAreaSet;
 	public boolean isOver;
+	Color normColour, hovColour;
 	
 	public Label(String text, GUI gui) {
 		text = text.toUpperCase();
 		
 		this.text = text;
 		this.gui = gui;
+		this.normColour = new Color(100, 100, 100);
+		this.hovColour = new Color(150, 150, 150);
+	}
+	
+	public Label(String text, GUI gui, Color normColour, Color hovColour) {
+		text = text.toUpperCase();
+		
+		this.text = text;
+		this.gui = gui;
+		this.normColour = normColour;
+		this.hovColour = hovColour;
 	}
 
 	int offset;
@@ -44,9 +56,9 @@ public class Label {
 		
 		// render it
 		if(isOver && hov) {
-			gui.font.drawString(x, y, text, new Color(50, 50, 50));
+			gui.font.drawString(x, y, text, hovColour);
 		} else {
-			gui.font.drawString(x, y, text, new Color(250, 250, 250));
+			gui.font.drawString(x, y, text, normColour);
 		}
 	}
 	

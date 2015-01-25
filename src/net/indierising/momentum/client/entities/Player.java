@@ -3,6 +3,7 @@ package net.indierising.momentum.client.entities;
 import net.indierising.momentum.client.Globals;
 import net.indierising.momentum.client.Play;
 import net.indierising.momentum.client.entitydata.PlayerData;
+import net.indierising.momentum.client.gui.GUI;
 import net.indierising.momentum.client.network.Packets.PlayerClass;
 
 import org.newdawn.slick.Animation;
@@ -83,15 +84,19 @@ public class Player extends Entity {
 		if(getImage() != null) {
 			sprite[getDir()].draw(getX(), getY());
 		}
-		
-		if(playerClass != null){
-			g.drawString(playerClass.name, 10, 10);
-		}
 	}
 	
-	public void renderName(Graphics g) {
+	public void renderName(GUI gui) {
 		// name
-		g.drawString(getUsername(), getX() - Play.camera.x, getY()-10 - Play.camera.y);
+		float x = getX() + getWidth()/2 - gui.font.getWidth(getUsername())/2;
+		float y = getY() - 15;
+		
+		gui.font.drawString(x - Play.camera.x, y - Play.camera.y, getUsername());
+		
+		// class
+		if(playerClass != null){
+			gui.font.drawString(10, 10, "Class: " + playerClass.name);
+		}
 	}
 	
 	public void update(GameContainer gc, int delta) {

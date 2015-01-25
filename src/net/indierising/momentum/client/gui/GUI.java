@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.AngelCodeFont;
 
 public class GUI {
-	AngelCodeFont font;
+	public AngelCodeFont font;
 	
 	// textboxes
 	public ArrayList<Textbox> textboxes = new ArrayList<Textbox>();

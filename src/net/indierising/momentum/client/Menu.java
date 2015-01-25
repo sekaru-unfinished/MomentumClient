@@ -22,7 +22,7 @@ public class Menu extends BasicGameState {
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		// gui
-		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font_big.fnt", "data/assets/fonts/font_big.png");
+		AngelCodeFont font = new AngelCodeFont("data/assets/fonts/font.fnt", "data/assets/fonts/font.png");
 		gui = new GUI(font);
 		
 		// labels
@@ -39,12 +39,12 @@ public class Menu extends BasicGameState {
 		g.setBackground(new Color(150, 150, 150));
 		
 		bg.draw();
-		logo.draw(gc.getWidth()/2-logo.getWidth()/2, gc.getHeight()/2-logo.getHeight()/2);
+		logo.draw(gc.getWidth()/2-logo.getWidth()/2, gc.getHeight()/2-logo.getHeight()/2-40);
 		
 		// labels
-		login.render(gc.getWidth()/2-login.getWidth()/2, gc.getHeight()/2 + 60, true, gc);
-		register.render(gc.getWidth()/2-register.getWidth()/2, gc.getHeight()/2 + 110, true, gc);
-		credits.render(gc.getWidth()/2-credits.getWidth()/2, gc.getHeight()/2 + 160, true, gc);
+		login.render(gc.getWidth()/2-login.getWidth()/2, gc.getHeight()/2 + 40, true, gc);
+		register.render(gc.getWidth()/2-register.getWidth()/2, gc.getHeight()/2 + 90, true, gc);
+		credits.render(gc.getWidth()/2-credits.getWidth()/2, gc.getHeight()/2 + 140, true, gc);
 	}
 	
 	public void mouseReleased(int button, int x, int y) {
