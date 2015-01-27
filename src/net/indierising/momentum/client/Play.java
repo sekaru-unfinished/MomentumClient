@@ -173,22 +173,19 @@ public class Play extends BasicGameState {
 			packet.pressed = true;
 			Network.client.sendUDP(packet);
 		} else {
-			// check keys to avoid clogging the server.
-			if(checkKey(key)) {
-				Key packet = new Key();
-				packet.key = key;
-				packet.pressed = true;
-				Network.client.sendUDP(packet);
-			} else {
-				// if there are textboxes selected TODO add a check to see if its the chat box
-				if(key == Keyboard.KEY_RETURN){
-					ChatMessage messagePacket = new ChatMessage();
-					// assign the first textbox in the array, ROUGH JOB
-					messagePacket.message = gui.textboxes.get(0).text;
+			// if there are textboxes selected TODO add a check to see if its the chat box
+			if(key == Keyboard.KEY_RETURN){
+				ChatMessage messagePacket = new ChatMessage();
+				// assign the first textbox in the array, ROUGH JOB
+				messagePacket.message = gui.textboxes.get(0).text;
+				if(!messagePacket.message.equals("")){
 					Network.client.sendTCP(messagePacket);
 					gui.textboxes.get(0).text = "";
 					gui.textboxes.get(0).unFocus();
 				}
+			}
+			if(key == Keyboard.KEY_ESCAPE){
+				gui.textboxes.get(0).unFocus();
 			}
 		}
 	}
@@ -201,21 +198,21 @@ public class Play extends BasicGameState {
 				packet.pressed = false;
 				Network.client.sendUDP(packet);
 			}
-		}
-		
-		// textboxes
-		for(int i=0; i<gui.textboxes.size(); i++) {
-			if(gui.textboxes.get(i).isFocused()) {
-				// check the key
-				switch(key) {
-				case Input.KEY_BACK:
-					gui.textboxes.get(i).delChar();
-					break;
-				case Input.KEY_RETURN:
-					gui.textboxes.get(i).unFocus();
-					break;
-				default:
-					gui.textboxes.get(i).addChar(c);
+		}else{
+			// textboxes
+			for(int i=0; i<gui.textboxes.size(); i++) {
+				if(gui.textboxes.get(i).isFocused()) {
+					// check the key
+					switch(key) {
+					case Input.KEY_BACK:
+						gui.textboxes.get(i).delChar();
+						break;
+					case Input.KEY_RETURN:
+						gui.textboxes.get(i).unFocus();
+						break;
+					default:
+						gui.textboxes.get(i).addChar(c);
+					}
 				}
 			}
 		}

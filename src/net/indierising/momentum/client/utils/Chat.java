@@ -22,7 +22,7 @@ public class Chat {
 	
 	public void render(GUI gui){
 		for(int i = 0; i < lines.size(); i++){
-			gui.font.drawString(18, 500+(i*15), lines.get(i), new Color(1f, 1f, 1f, i/8));
+			gui.font.drawString(18, 500+(i*15), lines.get(i), new Color(1f, 1f, 1f,0.1f*i));
 		}
 	}
 	
