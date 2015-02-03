@@ -62,6 +62,7 @@ public class Play extends BasicGameState {
         lightsImage = Image.createOffscreenImage(gc.getWidth(), gc.getHeight());
         lightsGraphics = lightsImage.getGraphics();
         
+        // temporary, just to show off :)
         lights.add(new Light(18*32, 3*32, 0.3f, 0.2f, "white_c"));
         lights.add(new Light(17*32, 3*32, 0.5f, 0.2f, "magenta_c"));
         lights.add(new Light(19*32, 3*32, 0.5f, 0.2f, "magenta_c"));
@@ -198,7 +199,7 @@ public class Play extends BasicGameState {
 				packet.pressed = false;
 				Network.client.sendUDP(packet);
 			}
-		}else{
+		} else {
 			// textboxes
 			for(int i=0; i<gui.textboxes.size(); i++) {
 				if(gui.textboxes.get(i).isFocused()) {
@@ -247,7 +248,6 @@ public class Play extends BasicGameState {
 			} catch (SlickException e) {
 				e.printStackTrace();
 			}
-			
 			doInitMaps = false;
 			
 			// init the camera

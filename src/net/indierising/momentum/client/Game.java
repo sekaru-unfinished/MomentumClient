@@ -17,9 +17,16 @@ public class Game extends StateBasedGame {
 	
 	public Game() {
 		super("Momentum Client");
+		
+		// add our states
 		this.addState(new Menu());
 		this.addState(new Play());
         this.enterState(MENU);
+	}
+	
+	public void initStatesList(GameContainer gc) throws SlickException {
+		this.getState(MENU).init(gc, this);
+		this.getState(PLAY).init(gc, this);
 	}
 
 	public static void main(String args[]) throws SlickException {
@@ -27,14 +34,13 @@ public class Game extends StateBasedGame {
 	     app.setShowFPS(false);
 	     app.setDisplayMode(WIDTH, HEIGHT, false);
 	     app.setTargetFrameRate(60);
+	     app.setAlwaysRender(true);
+	     app.setUpdateOnlyWhenVisible(false);
+	     
+	     // minimum deltas between frames
 	     app.setMaximumLogicUpdateInterval(10);
 		 app.setMaximumLogicUpdateInterval(60);
-	     app.setAlwaysRender(true);
+	     
 	     app.start();
-	}
-
-	public void initStatesList(GameContainer gc) throws SlickException {
-		this.getState(MENU).init(gc, this);
-		this.getState(PLAY).init(gc, this);
 	}
 }

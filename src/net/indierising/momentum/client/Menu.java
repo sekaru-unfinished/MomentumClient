@@ -43,8 +43,8 @@ public class Menu extends BasicGameState {
 		
 		// labels
 		login.render(gc.getWidth()/2-login.getWidth()/2, gc.getHeight()/2 + 40, true, gc);
-		register.render(gc.getWidth()/2-register.getWidth()/2, gc.getHeight()/2 + 90, true, gc);
-		credits.render(gc.getWidth()/2-credits.getWidth()/2, gc.getHeight()/2 + 140, true, gc);
+		register.render(gc.getWidth()/2-register.getWidth()/2, gc.getHeight()/2 + 90, true, gc); // TODO
+		credits.render(gc.getWidth()/2-credits.getWidth()/2, gc.getHeight()/2 + 140, true, gc); // TODO
 	}
 	
 	public void mouseReleased(int button, int x, int y) {

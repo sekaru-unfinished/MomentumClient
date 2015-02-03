@@ -12,16 +12,18 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-public class NPC extends Entity{
-	private float damage,health;
+public class NPC extends Entity {
 	private String name;
+	private int map;
+	private float damage, health;
 	private Animation sprite[] = new Animation[4];
 	
 	public NPC(NPCData data){
 		super(data.id, new Vector2f(data.x, data.y), data.width, data.height, data.dir, data.imageLoc);
+		this.setName(data.name);
+		this.setMap(data.map);
 		this.setHealth(data.health);
 		this.setDamage(data.damage);
-		this.setName(data.name);
 	}
 	
 	public void loadImage() {
@@ -88,6 +90,22 @@ public class NPC extends Entity{
 			sprite[getDir()].update(delta);
 		}
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	public void setMap(int map) {
+		this.map = map;
+	}
+
+	public int getMap() {
+		return map;
+	}
 
 	public void setDamage(float damage) {
 		this.damage = damage;
@@ -103,13 +121,5 @@ public class NPC extends Entity{
 
 	public float getHealth() {
 		return health;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
 	}
 }

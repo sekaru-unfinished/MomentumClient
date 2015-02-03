@@ -19,10 +19,6 @@ public class Light {
 	public void initSprite(String image) {
 		try {
 			lightImage = new Image("data/assets/lights/" + image + ".png");
-			/*float r = Globals.rand(0f, 1f);
-			float g = Globals.rand(0f, 1f);
-			float b = Globals.rand(0f, 1f);
-			*/
 
 			for(int i=0; i<4; i++) {
 				lightImage.setColor(i, 1f, 1f, 1f, baseAlpha);
@@ -37,7 +33,7 @@ public class Light {
 		float height = 1f*(lightImage.getHeight()*size);
 		
 		lightImage.startUse();
-		lightImage.drawEmbedded(x-Play.camera.x -width/2+Globals.TILE_SIZE/2, y-Play.camera.y -height/2+Globals.TILE_SIZE/2, width, height);
+		lightImage.drawEmbedded(x-Play.camera.x-width/2+Globals.TILE_SIZE/2, y-Play.camera.y-height/2+Globals.TILE_SIZE/2, width, height);
 		lightImage.endUse();
 	}
 	
@@ -50,7 +46,5 @@ public class Light {
 		lightImage.endUse();
 	}
 	
-	public void update(int delta) {
-		
-	}
+	public void update(int delta) {}
 }

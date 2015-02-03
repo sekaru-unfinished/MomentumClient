@@ -48,7 +48,7 @@ public class Camera {
 	    // fringe layers
 	    int fringeLayer = map.getLayerIndex("Fringe"); 
 	    if(fringeLayer==-1) fringeLayer = map.getLayerIndex("Fringe1");
-	    int fringeLayer2 = map.getLayerIndex("Fringe2"); // todo come up with a better system
+	    int fringeLayer2 = map.getLayerIndex("Fringe2"); // TODO come up with a better system
 	    int fringeLayer3 = map.getLayerIndex("Fringe3");
 	    
 	    animatedLayer = map.getLayerIndex("Animated");

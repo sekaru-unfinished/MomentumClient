@@ -3,7 +3,7 @@ package net.indierising.momentum.client.entitydata;
 import net.indierising.momentum.client.entities.NPC;
 
 public class NPCData {
-	public int id;
+	public int id, map;
 	public String name;
 	public float x, y, speed;
 	public int dir;
@@ -18,6 +18,7 @@ public class NPCData {
 		this.name = npc.getName();
 		this.x = npc.getX();
 		this.y = npc.getY();
+		this.map = npc.getMap();
 		this.dir = npc.getDir();
 		this.width = npc.getWidth();
 		this.height = npc.getHeight();
@@ -27,6 +28,6 @@ public class NPCData {
 	}
 	
 	public String toString() {
-		return "ID: " + id + ", Name: " + name + ", pos: " + x + ", " + y;
+		return "ID: " + id + ", Name: " + name + ", pos: " + x + ", " + y + " on map "  + map;
 	}
 }

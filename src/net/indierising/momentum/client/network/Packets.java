@@ -13,7 +13,7 @@ public class Packets {
 	
 	public static class Key {
 		public int key;
-		public boolean pressed; // whether the key was pressed or released.
+		public boolean pressed; // whether the key was pressed or released
 	}
 	
 	public static class PlayerPacket {

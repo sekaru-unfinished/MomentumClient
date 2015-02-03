@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Globals {
-	public static String username = "mali";
+	public static String username = "user";
 	public static int connectionID = -1;
 	
 	// maps stuff
