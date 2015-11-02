@@ -101,7 +101,7 @@ public class Play extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		if(Globals.connectionID!=-1) {
 			if(Globals.mapsInited) {
-				 // set the brightness outside lit-up areas
+				// set the brightness outside lit-up areas
 		        int brightness = Integer.valueOf(camera.map.getMapProperty("brightness", "75"));
 		        lighting = new Color(brightness, brightness, brightness);
 		        
